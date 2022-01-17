@@ -1,0 +1,62 @@
+*,
+*:active,
+*::after {
+  padding: 0;
+  box-sizing: border-box;
+}
+.App {
+  max-width: 50em;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+button {
+  text-align-last: center;
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+}
+
+input {
+  cursor: pointer !important;
+  padding: 13px;
+  border: 0.002px solid #00aff0 !important;
+  background-color: white !important;
+  border-radius: 14px;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  transition: ease-in-out;
+  -webkit-font-smoothing: antialiased;
+}
+
+Link {
+  color: #00aff0 !important;
+  text-decoration: none !important;
+}
+
+.ReactInputVerificationCode__item {
+  width: 50%;
+  height: 50%;
+  font-family: "Gill Sans", sans-serif !important;
+  align-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  justify-content: center !important;
+}
+.sc-jIkXHa {
+  display: inline-block;
+  align-content: center !important;
+}
+
+@media screen and (max-width: 960px) {
+  :root {
+    box-sizing: border-box;
+    width: 30rem;
+    height: 70rem;
+  }
+}
