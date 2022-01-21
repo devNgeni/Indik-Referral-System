@@ -9,6 +9,7 @@ import {
   TextBtn,
   Registered,
   RegisterText,
+  RegisterLink,
 } from "./ProfitElement";
 import background from "../../images/Profit/background.svg";
 import back from "../../images/Profit/back.svg";
@@ -25,7 +26,7 @@ function Profit() {
           <img src={back} alt="Welcome" />
         </CircleOver>
       </Circle>
-      <TextHeader color="grey">Get 50% Profit</TextHeader>
+      <TextHeader color="grey">&nbsp;&nbsp;Get 50% Profit&nbsp;&nbsp;</TextHeader>
       <TextArea>The only thing you need is a license and 3 friends</TextArea>
       <TextBtn>
         <Link to="/signup">
@@ -36,7 +37,7 @@ function Profit() {
               border: "none",
               padding: "15px",
               borderRadius: "8px",
-              width: "300px",
+              width: "450px",
               fontWeight: "bold",
             }}
           >
@@ -45,12 +46,12 @@ function Profit() {
         </Link>
       </TextBtn>
       <Registered>
-        <RegisterText>
-          Already Registered?
-          <Link to="/signin" style={{ color: "#00AFF0" }}>
+        <RegisterText>Already Registered?</RegisterText>
+        <RegisterLink>
+          <Link to="/signin" style={{ color: "#00AFF0", textDecoration: "none", }}>
             Signin
           </Link>
-        </RegisterText>
+        </RegisterLink>
       </Registered>
     </Container>
   );

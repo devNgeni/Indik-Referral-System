@@ -9,30 +9,29 @@ import {
   TextArea,
   TextBtn,
   Registered,
+  RegisterLink,
   RegisterText,
   TextImage,
   LoadingBox,
-  MessageBox
+  MessageBox,
 } from "./SigninElement";
 import hidePwdImg from "../../images/Show/hidePwdImg.svg";
 import showPwdImg from "../../images/Show/hidePwdImg.svg";
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { signin } from '../../actions/userActions'
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { signin } from "../../actions/userActions";
 
 function Signin() {
   const [pwd, setPwd] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   const navigate = useNavigate();
-  const [ email, setEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
-  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const { search } = useLocation();
-  const redirectInUrl = new URLSearchParams(search).get('redirect');
-  const redirect = redirectInUrl ? redirectInUrl : '/dashboard';
+  const redirectInUrl = new URLSearchParams(search).get("redirect");
+  const redirect = redirectInUrl ? redirectInUrl : "/dashboard";
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo, loading, error } = userSignin;
 
@@ -47,7 +46,6 @@ function Signin() {
     }
   }, [navigate, redirect, userInfo]);
 
-
   return (
     <Container>
       <Header>Sign into Your Account</Header>
@@ -55,41 +53,43 @@ function Signin() {
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox>{error}</MessageBox>}
         <Email>
-        <NameText>
-          <input
-            autoFocus="autofocus"
-            autoComplete="off"
-            label="email"
-            name="email"
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter Email"
-            required
-            className={Name}
-            onFocus={(e) => {
-          }}
-          />
-        </NameText>
-        <NameText>
-          <input
-            name="pwd"
-            placeholder="Enter Password"
-            type={isRevealPwd ? "text" : "password"}
-            value={pwd}
-            required
-            onChange={(e) => {setPwd(e.target.value); setPassword(e.target.value)}}
-          />
-        </NameText>
-        <TextImage>
-          <img
-            style={{ margin: "10px" }}
-            alt={isRevealPwd ? "Hide password" : "Show password"}
-            src={isRevealPwd ? hidePwdImg : showPwdImg}
-            onClick={() => setIsRevealPwd((prevState) => !prevState)}
-          />
-        </TextImage>
-        </Email> 
+          <NameText>
+            <input
+              autoFocus="autofocus"
+              autoComplete="off"
+              label="email"
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter Email"
+              required
+              className={Name}
+              onFocus={(e) => {}}
+            />
+          </NameText>
+          <NameText>
+            <input
+              name="pwd"
+              placeholder="Enter Password"
+              type={isRevealPwd ? "text" : "password"}
+              value={pwd}
+              required
+              onChange={(e) => {
+                setPwd(e.target.value);
+                setPassword(e.target.value);
+              }}
+            />
+          </NameText>
+          <TextImage>
+            <img
+              style={{ margin: "10px" }}
+              alt={isRevealPwd ? "Hide password" : "Show password"}
+              src={isRevealPwd ? hidePwdImg : showPwdImg}
+              onClick={() => setIsRevealPwd((prevState) => !prevState)}
+            />
+          </TextImage>
+        </Email>
       </form>
-          
+
       <TextArea>
         <Link
           to="/forgot"
@@ -98,6 +98,8 @@ function Signin() {
             textDecoration: "none",
             fontWeight: "bold",
             padding: "10px",
+            transition: "all ease-in-out 0.5s",
+            transform: "scale(1.4)",
           }}
         >
           Forgort password
@@ -108,8 +110,7 @@ function Signin() {
           type="submit"
           className="obato"
           style={{
-            color: "white",
-            border: "none",
+            boxSizing: "border-box",
             padding: "15px",
             marginTop: "43px",
             borderRadius: "15px",
@@ -123,18 +124,21 @@ function Signin() {
       <Registered>
         <RegisterText>
           Not Registered?
+        </RegisterText>
+        <RegisterLink>
           <Link
             to={`/signup?redirect=${redirect}`}
             style={{
               color: "#00AFF0",
               textDecoration: "none",
               fontWeight: "bold",
-              paddingLeft: "5px"
+              paddingLeft: "5px",
+              hover: "transition: all ease-in-out 0.5s  transform: scale(1.2)"
             }}
           >
             Create Account
           </Link>
-        </RegisterText>
+        </RegisterLink>
       </Registered>
     </Container>
   );

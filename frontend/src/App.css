@@ -14,6 +14,11 @@ button {
   text-align-last: center;
 }
 
+button:hover {
+  color: #00aff0;
+  background-color: #fff;
+}
+
 .content {
   max-width: 500px;
   margin: auto;
@@ -37,6 +42,11 @@ input {
 Link {
   color: #00aff0 !important;
   text-decoration: none !important;
+}
+
+Link:hover {
+  transition: all ease-in-out 0.5s;
+  transform: scale(1.2);
 }
 
 .ReactInputVerificationCode__item {

@@ -1,6 +1,17 @@
 import styled from 'styled-components';
 
-export const ErrorContainer = styled.div``;
+export const ErrorContainer = styled.div`
+justify-content: center;
+display: grid;
+@media screen and (min-width: 1024px) {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+@media screen and (min-width: 960px) {
+  justify-content: center;
+}
+`;
 export const ErrorHeader = styled.div`
   font-weight: bold;
   font-family: "Gill Sans", sans-serif;

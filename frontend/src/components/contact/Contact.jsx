@@ -14,6 +14,7 @@ import contactimg from "../../images/contact/contactimg.svg";
 import phoneico from "../../images/contact/phoneico.svg";
 import email from "../../images/contact/email.svg";
 import location from "../../images/contact/location.svg";
+import { ExternalLink } from "react-external-link";
 
 function Contact() {
   return (
@@ -57,7 +58,8 @@ function Contact() {
         </ContactText>
       </ContactBody>
       <ContactBody>
-        <button
+        <ExternalLink href="mailto:support@indik.io">
+          <button
           type="button"
           style={{
             border: "1px #3A5168",
@@ -72,6 +74,8 @@ function Contact() {
         >
           support@indik.io
         </button>
+        </ExternalLink>
+        
         <ContactText>
           <img
             src={email}

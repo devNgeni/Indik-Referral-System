@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const ContactContainer = styled.div`
- justify-content: center;
- align-content: center;
- text-align-last : center;
- align-items: center;
- @media screen and (max-width: 960px) {
-   align-content: center;
- }
+  justify-content: center;
+  align-content: center;
+  text-align-last: center;
+  align-items: center;
+  @media screen and (max-width: 960px) {
+    align-content: center;
+  }
 `;
 export const ContactNavbar = styled.div`
   text-align-last: start;
@@ -43,9 +43,22 @@ export const ContactBody = styled.div`
   height: 80px;
   padding-left: -20px;
   font-family: "Gill Sans", sans-serif;
+  button:hover::before {
+    opacity: 0 ;
+    transform: scale(0.5,0.5);
+  }
+  button:hover {
+    color: #00aff0;
+    transition: all ease-in-out 0.5s;
+    transform: scale(1.2);
+  }
+  button:hover::after {
+    opacity: 1;
+    transform: scale(1,1);
+  }
   @media screen and (max-width: 960px) {
     align-content: center;
-  }
+    }
 `;
 export const ContactDiv = styled.div`
   height: 300px;
@@ -61,5 +74,5 @@ export const Contactico = styled.div`
   z-index: -1;
 `;
 export const ContactCont = styled.div`
-margin: -4px;
+  margin: -4px;
 `;

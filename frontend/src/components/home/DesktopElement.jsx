@@ -1,6 +1,16 @@
 import styled from 'styled-components'
 export const DeskContainer = styled.div`
 margin: 10px;
+justify-content: center;
+display: grid;
+@media screen and (min-width: 1024px) {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+@media screen and (min-width: 960px) {
+  justify-content: center;
+}
 `;
 export const DeskHeader = styled.div`
 font-family: "Gill Sans", sans-serif;
