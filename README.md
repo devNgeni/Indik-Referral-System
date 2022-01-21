@@ -8,11 +8,15 @@ This is a PWA fintech app that allow Brazil users to earn through Referrals crea
 
 
 # Getting Started Clone the Project
-run `yarn install`
-- `cd Referral-System` and install nodemon  `yarn install nodemon`
+# backend
+run `cd Referral-System` then `yarn install`
+-then run `yarn install nodemon`
+-then `yarn run dev` to start indik backend
+# frontend
 - `cd frontend` from root folder
-- run `yarn start` to start indik frontend
-- `cd Referral-System` then `yarn run dev` to run indik backend 
+- run `yarn install`
+- then run `yarn start` to start indik frontend
+
 
 
 
