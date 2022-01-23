@@ -10,7 +10,6 @@ export const Container = styled.div`
   }
   @media screen and (min-width: 960px) {
     justify-content: center;
-
   }
 `;
 export const Header = styled.div`
@@ -43,6 +42,10 @@ button {
         background-color: #00AFF0;
         border-radius: 6px
         color: #ffff;
+ }
+ :hover {
+        transition: all ease-in-out 0.5s;
+        transform: scale(1.2);
       }
 `;
 export const NameText = styled.div`
@@ -57,14 +60,30 @@ export const Confirm = styled.div``;
 export const Password = styled.div``;
 export const Mobile = styled.div``;
 
-export const Registered = styled.div``;
+export const Registered = styled.div`
+  display: inline-flex;
+  justify-content: center;
+`;
 export const RegisterText = styled.div`
   font-family: "Gill Sans", sans-serif;
   text-align-last: center;
   justify-content: center;
   font-size: 1.5em;
-  padding: 10px;
-  margin: 10px;
+  padding-top: 10px;
+  margin-top: 10px;
+`;
+
+export const RegisterLink = styled.div`
+  font-family: "Gill Sans", sans-serif;
+  text-align-last: center;
+  justify-content: center;
+  font-size: 1.5em;
+  padding-top: 10px;
+  margin-top: 10px;
+  :hover {
+    transition: all ease-in-out 0.5s;
+    transform: scale(1.2);
+  }
 `;
 
 export const Danger = styled.div``;

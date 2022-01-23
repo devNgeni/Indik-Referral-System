@@ -15,4 +15,4 @@ async function generateJwt(email, user_id) {
     }
 }
 
-module.exports = { generateJwt };
+module.exports =  { generateJwt };

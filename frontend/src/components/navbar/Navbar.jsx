@@ -33,7 +33,8 @@ function Navbar() {
               <li key={index} className={item.cName}>
                 <Link to={item.path}>
                   {item.icon}
-                  <SidebarText>{item.title}</SidebarText>
+    
+                  <SidebarText style={{fontWeight: "bold"}}>{item.title}</SidebarText>
                 </Link>
               </li>
             );

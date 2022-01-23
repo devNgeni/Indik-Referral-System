@@ -31,7 +31,7 @@ padding: 10px;
 `;
 export const SideButton = styled.div`
 text-align-last: start;
-height: 150px;
+height: 200;
 padding: 20px;
 
 `;

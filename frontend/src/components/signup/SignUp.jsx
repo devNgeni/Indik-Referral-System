@@ -11,6 +11,7 @@ import {
   NameText,
   TextBtn,
   Registered,
+  RegisterLink,
   RegisterText,
   DangerContainer,
   FormGroup,
@@ -146,6 +147,8 @@ function SignUp(props) {
       <Registered>
         <RegisterText>
           Already Registered?
+        </RegisterText>
+        <RegisterLink>
           <Link
             to="/Login"
             style={{
@@ -153,12 +156,12 @@ function SignUp(props) {
               textDecoration: "none",
               fontSize: "1em",
               fontWeight: "bold",
-              paddingLeft: "5px"
+              paddingLeft: "15px"
             }}
           >
             Sign in
           </Link>
-        </RegisterText>
+        </RegisterLink>
       </Registered>
     </Container>
   );
