@@ -20,7 +20,7 @@ import {
   FriendOne,
   FriendTwo,
   FriendThree,
-  FriendFour
+  FriendFour,
 } from "./FriendsElement";
 import indik from "../../images/indik/indik.svg";
 import hamberger from "../../images/header/hamberger.svg";
@@ -67,11 +67,11 @@ function Friends(props) {
           </FriendTxt>
         </FriendHeader>
         <FriendContent>
-        <img src={copy} alt="icon" />
-          <img src={share} alt="" />
+          <img src={copy} alt="icon" />
+          <img src={share} alt="icon" />
         </FriendContent>
       </Friendparagraph>
-        
+
       <FriendNum>
         <FriendNav>
           My Network
@@ -82,9 +82,10 @@ function Friends(props) {
         </Friendcont>
       </FriendNum>
       <FriendFour>
-      <FriendDiv>You have no Friends</FriendDiv>
-      <FriendDiv>Share Your Invitation Code and</FriendDiv>
-      <FriendDiv>see your Profit grow</FriendDiv>
+        <FriendDiv>You Have No Friends</FriendDiv>
+        <FriendDiv>Share Your Invitation Code</FriendDiv>
+        <FriendDiv>And</FriendDiv>
+        <FriendDiv>See Your Profit Grow</FriendDiv>
       </FriendFour>
     </FriendContainer>
   );
