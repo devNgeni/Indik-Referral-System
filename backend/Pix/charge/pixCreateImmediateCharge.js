@@ -36,19 +36,19 @@ const createPixCharge = async () => {
     .pixCreateImmediateCharge([], chargeData)
 
     .then((resposta) => {
-      // QrCode(resposta.loc.id);
       console.log(resposta);
       let params = {
-        id: resposta.loc.id 
-    }
-      gerencianet.pixGenerateQRCode(params).then(
-        (qrData) => {
-          console.log("QR Data: ",qrData);
-        }
-      ).catch((error) => {
-        console.log("Error",error);
-      });
-      
+        id: resposta.loc.id,
+      };
+
+      gerencianet
+        .pixGenerateQRCode(params)
+        .then((qrData) => {
+          console.log("QR Data: ", qrData);
+        })
+        .catch((error) => {
+          console.log("Error", error);
+        });
     })
     .catch((error) => {
       console.log(error);

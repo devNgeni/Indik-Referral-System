@@ -6,7 +6,6 @@ const path = require("path");
 const {
   createPixCharge,
 } = require("./charge/pixCreateImmediateCharge");
-// const { QrCode } = require("../examples/pix/charge/pixCreateImmediateCharge");
 
 const app = express();
 
@@ -15,8 +14,9 @@ app.use(express.json());
 //api that creates the charge
 app.post("/api/v1/createCharge", async (request, response) => {
   const pixCharge = await createPixCharge(request.body);
-
-  response.send({ ok: 1, pixCharge });
+  console.log(response.data)
+  response.send({ ok:1 , pixCharge });
+  
 });
 
 

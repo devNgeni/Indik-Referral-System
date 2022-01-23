@@ -15,7 +15,7 @@ import UserFailed from './pages/Failed';
 import UserError from './pages/Error';
 import UserWork from './pages/Work';
 import UserHooray from './pages/Hooray';
-// import UserPix from './pages/Pix';
+import Pix from './components/pix/Pix';
 import UserContact from './pages/Contact';
 import UserDesktop from './pages/Home';
 import UserDashboard from './pages/Dashboard';
@@ -45,7 +45,7 @@ function App() {
       <Route path="/error" element={<UserError />} />
       <Route path="/work" element={<UserWork />} />
       <Route path="/hooray" element={<UserHooray />} />
-      {/* <Route path="/pix" element={<UserPix />} /> */}
+      <Route path="/pix" element={<Pix />} />
       <Route path="/contact" element={<UserContact />} />
       <Route path="/desktop" element={<UserDesktop />} />
       <Route path="/dashboard" element={<UserDashboard />} />
