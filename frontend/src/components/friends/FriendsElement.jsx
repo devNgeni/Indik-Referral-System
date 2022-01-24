@@ -13,6 +13,14 @@ display: grid;
 }
 `;
 
+export const FriendLogo = styled.div`
+padding-left: 20px;
+`;
+
+export const Friend = styled.div`
+padding-top: 10px;
+`;
+
 export const FriendWord = styled.div`
 font-family: "Gill Sans", sans-serif;
 padding-left: 20px;
@@ -52,7 +60,7 @@ export const FriendDiv = styled.div`
 font-family: "Gill Sans", sans-serif;
 font-size: 32px;
 color: 000000;
-padding: 20px
+padding: 10px
 `;
 export const FriendColumn = styled.div`
 font-weight: 200;
@@ -61,8 +69,9 @@ text-align-last: start;
 `;
 export const FriendContent = styled.div`
 text-align-last: right;
+display: inline-flex;
 padding-top: 50px;
-padding-right: 20px;
+padding-right: 2px;
 padding-bottom: 20px;
 justify-content: space-evenly;
 width: 300px;
@@ -79,9 +88,11 @@ height: 20vh;
 display: flex;
 `;
 export const Friendbg = styled.div`
+display: inline-flex;
 text-align-last: start;
-margin: 2em;
-`;
+margin-top: 20px;
+margin-bottom: 20px;
+`;  
 
 export const FriendNav = styled.div`
 font-family: "Gill Sans", sans-serif;
@@ -129,7 +140,9 @@ padding-top: 4px;
 export const FriendFour = styled.div`
 background-color: #ade9ff;
 border-radius: 15px;
-height: 20em;
+height: 15em;
 justify-content: center;
+align-text: center;
 text-align-last: center;
 `;
+export const FriendCopy = styled.div``;

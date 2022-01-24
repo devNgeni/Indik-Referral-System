@@ -38,7 +38,7 @@ export const Register = (name, email, phone, password) => async (dispatch) => {
     try {
         const {
             data
-        } = await Axios.post(endpoints.signup.url, {
+        } = await Axios.post(endpoints.signin.url, {
             name,
             email,
             phone,
