@@ -25,31 +25,28 @@ import {
 import {
     endpoints
 } from '../api/endpoints';
-
-export const Register = (name, email, phone, password) => async (dispatch) => {
+export const Register = (name, email, phone, password, confirmPassword) => async (dispatch) => {
     dispatch({
         type: USER_REGISTER_REQUEST,
         payload: {
             email,
             phone,
-            password
+            password,
+            confirmPassword
         }
     });
     try {
         const {
             data
-        } = await Axios.post(endpoints.signin.url, {
+        } = await Axios.post(endpoints.signup.url, {
             name,
             email,
             phone,
-            password
+            password,
+            confirmPassword
         })
         dispatch({
             type: USER_REGISTER_SUCCESS,
-            payload: data
-        });
-        dispatch({
-            type: USER_SIGNIN_SUCCESS,
             payload: data
         });
         localStorage.setItem('userInfo', JSON.stringify(data));

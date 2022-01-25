@@ -12,12 +12,14 @@ body {
 form { 
     justify-content: center !important;
     align-content: center !important;
-    text-align-last: center !important;
+    text-align-last: start !important;
     justify-items: center !important;
     justify-self: center !important;
     align-items: center !important;
     display: flex;
     width: 100%;
+    height: 100%;
+    font-size: 1.6rem;
 }
 
 input,
@@ -26,14 +28,18 @@ button {
   padding: 1rem;
   border-radius: 0.5rem;
   border: 0.1rem #a4a4a4 solid;
-  font-size: 1.6rem;
+  font-size: 1.5rem !important;
   font-family: "Gill Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 input:hover,
 textarea:hover,
 button:hover {
-  border: 0.1rem #404040 solid;
+  border: none;
+  padding: 10px;
+  width: 25rem;
+  height: 4rem; 
+  font-size: 1.5rem !important;
+  text-decoration: none;
 }

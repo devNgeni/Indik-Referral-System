@@ -16,18 +16,9 @@ import {
   DangerContainer,
   FormGroup,
   FormLabel,
+  PhoneSel,
 } from "./SignupElement";
-import PhoneInput, {
-  formatPhoneNumber,
-  formatPhoneNumberIntl,
-  isValidPhoneNumber,
-} from "react-phone-number-input/input";
-import { isPossiblePhoneNumber } from "libphonenumber-js/core";
-import countryNames from "react-phone-number-input/locale/pt-BR.json";
-import Input, {
-  getCountries,
-  getCountryCallingCode,
-} from "react-phone-number-input/input";
+import PhoneInput from "material-ui-phone-number";
 
 function SignUp(props) {
   const navigate = useNavigate();
@@ -39,7 +30,7 @@ function SignUp(props) {
 
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
-  const redirect = redirectInUrl ? redirectInUrl : "/";
+  const redirect = redirectInUrl ? redirectInUrl : "/login";
 
   const userRegister = useSelector((state) => state.userRegister);
   const { userInfo } = userRegister;
@@ -48,9 +39,9 @@ function SignUp(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Password and confirm password are not match");
+      alert("Password and confirm password do not match");
     } else {
-      dispatch(Register(name, email, phone, password));
+      dispatch(Register(name, email, phone, password, confirmPassword));
     }
   };
   useEffect(() => {
@@ -59,14 +50,9 @@ function SignUp(props) {
     }
   }, [navigate, redirect, userInfo]);
 
-  // Outputs: [AC, AD, AE, ...]
-  console.log(getCountries());
-
-  // Outputs: United States
-  console.log(countryNames["BR"]);
-
-  // Outputs: +1
-  console.log("+" + getCountryCallingCode("BR"));
+  const handleOnChange = value => {
+    setPhone(value);
+  };
 
   return (
     <Container>
@@ -97,43 +83,43 @@ function SignUp(props) {
               onChange={(e) => setEmail(e.target.value)}
             />
           </NameText>
-          <PhoneInput>
-            <Input
-              defaultCountry="BR"
-              countrySelectProps={{ unicodeFlags: true }}
-              type="number"
-              id="number"
-              placeholder="Enter Mobile Number"
-              className={Name}
-              required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              error={
-                phone
-                  ? isValidPhoneNumber(phone)
-                    ? undefined
-                    : "Invalid Phone Number"
-                  : "Phone number required"
-              }
-            />
-          Is possible: {phone && isPossiblePhoneNumber(phone) ? 'true' : 'false'}
-          is valid: {phone && isValidPhoneNumber(phone) ? "true" : "true"}
-          National: {phone && formatPhoneNumber(phone)}
-          International: {phone && formatPhoneNumberIntl(phone)}
-          </PhoneInput>
+          <PhoneSel>
+            <NameText>
+              <PhoneInput
+                defaultCountry="br"
+                regions={["south-america", "africa"]}
+                style={{width: "4rem", height: "4rem", }}
+                type="phone"
+                className={"MuiFormHelperText-root MuiFormHelperText-contained Mui-error MuiFormHelperText-filled MuiFormHelperText-marginDense"}
+                value={phone}
+                onChange={(e) => setPhone(handleOnChange)}
+                isValid={(value, country) => {
+                  if (value.match(/12345/)) {
+                    return 'Invalid value: '+value+', '+country.name;
+                  } else if (value.match(/1234/)) {
+                    return false;
+                  } else {
+                    return true;
+                  }
+                }}
+              />
+              {phone}
+            </NameText>
+          </PhoneSel>
           <NameText>
             <input
-              type="text"
+              type="password"
               id="password"
               placeholder="Enter Password"
               className={Name}
+              value={password}
               required
               onChange={(e) => setPassword(e.target.value)}
             />
           </NameText>
           <NameText>
             <input
-              type="text"
+              type="password"
               id="confirmPassword"
               placeholder="Enter Confirm Password"
               className={Name}
@@ -164,7 +150,9 @@ function SignUp(props) {
       <TextBtn>
         <button
           className="obato"
-          onClick={(e) => Register(e)}
+          onClick={() =>
+            dispatch(Register(name, email, phone, password, confirmPassword))
+          }
           style={{
             color: "white",
             border: "none",
