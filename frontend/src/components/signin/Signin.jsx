@@ -106,18 +106,7 @@ function Signin() {
         </Link>
       </TextArea>
       <TextBtn>
-        <button
-          type="submit"
-          className="obato"
-          style={{
-            boxSizing: "border-box",
-            padding: "15px",
-            marginTop: "43px",
-            borderRadius: "15px",
-            width: "450px",
-            fontWeight: "bold",
-          }}
-        >
+        <button className="obato">
           Sign In
         </button>
       </TextBtn>

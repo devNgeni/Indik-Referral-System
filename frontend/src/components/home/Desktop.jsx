@@ -53,17 +53,7 @@ function DeskTop() {
         </DeskDiv>
         <Desk>
           <Link to="/signup">
-            <button
-              className="obato"
-              style={{
-                color: "white",
-                border: "none",
-                padding: "10px",
-                borderRadius: "15px",
-                width: "150px",
-                fontWeight: "bold",
-              }}
-            >
+            <button>
               Get Started
             </button>
           </Link>
@@ -74,17 +64,7 @@ function DeskTop() {
       <DeskText>Social Connection</DeskText>
       <DeskSelf>
         <Link to="/signup">
-          <button
-            className="obato"
-            style={{
-              color: "white",
-              border: "none",
-              padding: "10px",
-              borderRadius: "15px",
-              width: "250px",
-              fontWeight: "bold",
-            }}
-          >
+          <button>
             Get Started
           </button>
         </Link>
@@ -127,17 +107,7 @@ function DeskTop() {
       </DeskBody>
       <DeskSelf>
         <Link to="/signup">
-          <button
-            className="obato"
-            style={{
-              color: "white",
-              border: "none",
-              padding: "10px",
-              borderRadius: "15px",
-              width: "250px",
-              fontWeight: "bold",
-            }}
-          >
+          <button>
             Get Started
           </button>
         </Link>

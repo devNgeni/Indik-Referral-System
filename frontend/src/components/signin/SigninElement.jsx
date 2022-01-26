@@ -66,10 +66,8 @@ export const RegisterText = styled.div`
   font-family: "Gill Sans", sans-serif;
   text-align: center;
   font-size: 1.5rem;
-  padding-top: 40px;
 `;
 export const RegisterLink = styled.div`
-  padding-top: 40px;
   padding-left: 20px;
   font-family: "Gill Sans", sans-serif;
   text-align: center;
@@ -87,12 +85,7 @@ export const TextBtn = styled.div`
   text-align: center;
   justify-content: center;
   color: white;
-
-  button {
-    background-color: #00aff0;
-    border-radius: 6px #00aff0;
-    color: #ffff;
-  }
+  padding: 40px;
   @media screen and (max-with: 960px) {
     display: flex;
     flex-direction: column-reverse;

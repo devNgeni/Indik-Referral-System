@@ -61,18 +61,7 @@ function Work(props) {
             <img src={workicon} alt="icon" />
           </TableIcon>
           <TableSpan>
-            <button
-              className="obato"
-              style={{
-                color: "white",
-                backgroundColor: "#00aff0",
-                border: "none",
-                padding: "10px",
-                borderRadius: "20px",
-                width: "200px",
-                fontWeight: "bold",
-              }}
-            >
+            <button>
               Purchase License $50
             </button>
           </TableSpan>

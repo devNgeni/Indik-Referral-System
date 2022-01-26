@@ -32,18 +32,7 @@ function Hooray() {
       <HoorayTitle>You Registered</HoorayTitle>
       <ServiceTwo>
         <Link to="/signup">
-          <button
-            className="obato"
-            style={{
-              color: "white",
-              backgroundColor: "#00aff0",
-              border: "none",
-              padding: "15px",
-              borderRadius: "15px",
-              width: "300px",
-              fontWeight: "bold",
-            }}
-          >
+          <button>
             Go to Dashboard
           </button>
         </Link>

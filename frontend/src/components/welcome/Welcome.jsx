@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Circle,
@@ -12,9 +12,14 @@ import {
 } from "./WelcomeElement";
 import circle from "../../images/WelBody/circle.svg";
 import welcomeicon from "../../images/WelBody/welcomeico.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
 function Welcome() {
+  const navigate = useNavigate();
+ const handleOnSubmit = () => {
+    navigate("/signup");
+    };
+
   return (
     <Container>
       <Circle>
@@ -31,21 +36,7 @@ function Welcome() {
       </TextArea>
 
       <TextBtn>
-        <Link to="/signup">
-          <button
-            className="obato"
-            style={{
-              color: "white",
-              border: "none",
-              padding: "15px",
-              borderRadius: "15px",
-              width: "450px",
-              fontWeight: "bold",
-            }}
-          >
-            Get Started
-          </button>
-        </Link>
+        <button onClick={handleOnSubmit}>Get Started</button>
       </TextBtn>
       <Registered>
         <RegisterText>
@@ -57,7 +48,7 @@ function Welcome() {
               textDecoration: "none",
               fontSize: "1em",
               fontWeight: "bold",
-              paddingLeft: "10px"
+              paddingLeft: "10px",
             }}
           >
             Sign in

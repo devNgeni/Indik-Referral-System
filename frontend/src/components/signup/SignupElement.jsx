@@ -34,20 +34,14 @@ export const Name = styled.div`
   border: 1px solid #333;
 `;
 export const TextBtn = styled.div`
-display: flex;
 justify-content: center;
 color: white;
-
-button {
-        background-color: #00AFF0;
-        border-radius: 6px
-        color: #ffff;
- }
- :hover {
-        transition: all ease-in-out 0.5s;
-        transform: scale(1.2);
-      }
 `;
+export const AlertText = styled.div`
+font-family: Gill Sans", sans-serif;
+font-size: 1.5em;
+`;
+
 export const NameText = styled.div`
   width: 100%;
   height: 100%;

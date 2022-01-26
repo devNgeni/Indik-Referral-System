@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const Container = styled.div`
 margin: 10px;
 justify-content: center;
-display: grid;
+display: grid !important;
+margin: 3% auto;
 @media screen and (min-width: 1024px) {
   width: 100%;
   height: 100%;
@@ -11,11 +12,12 @@ display: grid;
 }
 @media screen and (min-width: 960px) {
   justify-content: center;
+  text-align-last: center;
 }
 `;
 export const Header = styled.div`
 font-weight: bold;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: "Gill Sans", sans-serif;
   color: #333;
   text-align-last: center;
@@ -24,9 +26,11 @@ font-weight: bold;
 
 export const TextArea = styled.div`
 font-family: "Gill Sans", sans-serif;
-text-align-last: last !important;
+text-align-last: last;
 font-size: 2rem;
 padding-bottom:  40px;
+padding-left: 20px;
+width: 500px;
 `;
 
 export const Counter = styled.div`
@@ -49,6 +53,8 @@ text-align-last: center;
 `;
 export const VerifyButton = styled.div`
 padding-top: 20px;
+justify-content: center;
+display: flex;
 `;
 export const Registered = styled.div`
 padding: 40px;
