@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Register } from '../../actions/userActions'
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Register } from "../../actions/userActions";
 import {
   Container,
   Header,
@@ -15,9 +15,10 @@ import {
   RegisterText,
   DangerContainer,
   FormGroup,
-  FormLabel
+  FormLabel,
+  PhoneSel,
 } from "./SignupElement";
-
+import PhoneInput from "material-ui-phone-number";
 
 function SignUp(props) {
   const navigate = useNavigate();
@@ -27,28 +28,32 @@ function SignUp(props) {
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const {search } = useLocation();
-  const redirectInUrl = new URLSearchParams(search).get('redirect');
-  const redirect = redirectInUrl ? redirectInUrl : '/';
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get("redirect");
+  const redirect = redirectInUrl ? redirectInUrl : "/verification";
 
   const userRegister = useSelector((state) => state.userRegister);
   const { userInfo } = userRegister;
 
-      const dispatch = useDispatch();
-      const submitHandler = (e) => {
-        e.preventDefault();
-        if (password !== confirmPassword) {
-          alert('Password and confirm password are not match');
-        } else {
-          dispatch(Register(name, email, phone, password));
-        }
-      };
-      useEffect(() => {
-        if (userInfo) {
-          navigate(redirect);
-        }
-      }, [navigate, redirect, userInfo]);
-    
+  const dispatch = useDispatch();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Password and confirm password do not match");
+    } else {
+      dispatch(Register(name, email, phone, password, confirmPassword));
+    }
+  };
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, redirect, userInfo]);
+
+  const handleOnChange = value => {
+    setPhone(value);
+  };
+
   return (
     <Container>
       <Header>Let's Create Your Account</Header>
@@ -57,57 +62,71 @@ function SignUp(props) {
         email to verify your account. your email
       </TextArea>
       <form onSubmit={submitHandler} className={Label}>
-          <DangerContainer>
+        <DangerContainer>
+          <NameText>
+            <input
+              type="text"
+              id="Username"
+              placeholder="Enter Name"
+              className={Name}
+              required
+              onChange={(e) => setName(e.target.value)}
+            ></input>
+          </NameText>
+          <NameText>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter Email"
+              className={Name}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </NameText>
+          <PhoneSel>
             <NameText>
-              <input
-                type="text"
-                id="Username"
-                placeholder="Enter Name"
-                className={Name}
-                required
-                onChange={(e) => setName(e.target.value)}
-              ></input>
-            </NameText>
-            <NameText>
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter Email"
-                className={Name}
-                required
-                onChange={(e) => setEmail(e.target.value)}
+              <PhoneInput
+                defaultCountry="br"
+                regions={["south-america", "africa"]}
+                style={{width: "4rem", height: "4rem", }}
+                type="phone"
+                className={"MuiFormHelperText-root MuiFormHelperText-contained Mui-error MuiFormHelperText-filled MuiFormHelperText-marginDense"}
+                value={phone}
+                onChange={(e) => setPhone(handleOnChange)}
+                isValid={(value, country) => {
+                  if (value.match(/12345/)) {
+                    return 'Invalid value: '+value+', '+country.name;
+                  } else if (value.match(/1234/)) {
+                    return false;
+                  } else {
+                    return true;
+                  }
+                }}
               />
+              {phone}
             </NameText>
-            <NameText>
-              <input
-                type="number"
-                id="number"
-                placeholder="Enter Mobile Number"
-                className={Name}
-                required
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </NameText>
-            <NameText>
-              <input
-                type="text"
-                id="password"
-                placeholder="Enter Password"
-                className={Name}
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </NameText>
-            <NameText>
-              <input
-                type="text"
-                id="confirmPassword"
-                placeholder="Enter Confirm Password"
-                className={Name}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </NameText>
-          </DangerContainer>
+          </PhoneSel>
+          <NameText>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter Password"
+              className={Name}
+              value={password}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </NameText>
+          <NameText>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Enter Confirm Password"
+              className={Name}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </NameText>
+        </DangerContainer>
       </form>
       <FormGroup>
         <FormLabel
@@ -131,7 +150,9 @@ function SignUp(props) {
       <TextBtn>
         <button
           className="obato"
-          onClick={(e) => Register(e)}
+          onClick={() =>
+            dispatch(Register(name, email, phone, password, confirmPassword))
+          }
           style={{
             color: "white",
             border: "none",
@@ -145,9 +166,7 @@ function SignUp(props) {
         </button>
       </TextBtn>
       <Registered>
-        <RegisterText>
-          Already Registered?
-        </RegisterText>
+        <RegisterText>Already Registered?</RegisterText>
         <RegisterLink>
           <Link
             to="/Login"
@@ -156,7 +175,7 @@ function SignUp(props) {
               textDecoration: "none",
               fontSize: "1em",
               fontWeight: "bold",
-              paddingLeft: "15px"
+              paddingLeft: "15px",
             }}
           >
             Sign in
@@ -168,6 +187,5 @@ function SignUp(props) {
 }
 
 export default SignUp;
-
 
 // 3150296121

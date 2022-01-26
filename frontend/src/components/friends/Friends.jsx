@@ -20,7 +20,10 @@ import {
   FriendOne,
   FriendTwo,
   FriendThree,
-  FriendFour
+  FriendFour,
+  FriendCopy,
+  FriendLogo,
+  Friend
 } from "./FriendsElement";
 import indik from "../../images/indik/indik.svg";
 import hamberger from "../../images/header/hamberger.svg";
@@ -35,8 +38,8 @@ function Friends(props) {
   return (
     <FriendContainer>
       <Friendbg>
-        <img src={hamberger} alt="icon" />
-        <img src={indik} alt="icon" />
+        <Friend><img src={hamberger} alt="icon" height="40px" width="40px"/></Friend>
+        <FriendLogo><img src={indik} alt="icon" height="60px" width="60px"/></FriendLogo>
       </Friendbg>
       <Friendimg>
         <Profile>
@@ -67,11 +70,11 @@ function Friends(props) {
           </FriendTxt>
         </FriendHeader>
         <FriendContent>
-        <img src={copy} alt="icon" />
-          <img src={share} alt="" />
+          <FriendCopy><img src={copy} alt="icon" /></FriendCopy>
+          <FriendCopy><img src={share} alt="icon" /></FriendCopy>
         </FriendContent>
       </Friendparagraph>
-        
+
       <FriendNum>
         <FriendNav>
           My Network
@@ -82,9 +85,10 @@ function Friends(props) {
         </Friendcont>
       </FriendNum>
       <FriendFour>
-      <FriendDiv>You have no Friends</FriendDiv>
-      <FriendDiv>Share Your Invitation Code and</FriendDiv>
-      <FriendDiv>see your Profit grow</FriendDiv>
+        <FriendDiv style={{paddingTop: "20px"}}>You Have No Friends</FriendDiv>
+        <FriendDiv>Share Your Invitation Code</FriendDiv>
+        <FriendDiv>And</FriendDiv>
+        <FriendDiv>See Your Profit Grow</FriendDiv>
       </FriendFour>
     </FriendContainer>
   );

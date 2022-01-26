@@ -43,9 +43,10 @@ export const Name = styled.div`
   border: 1px solid #333;
 `;
 export const NameText = styled.div`
-  width: 30rem;
-  height: 6rem;
+  width: 100%;
+  height: 100%;
   padding: 20px;
+  font-size: 1.5rem;
 `;
 export const Email = styled.div`
   justify-content: center !important;
@@ -92,21 +93,14 @@ export const TextBtn = styled.div`
     border-radius: 6px #00aff0;
     color: #ffff;
   }
-
-  button:hover {
-    color: #fff;
-    background-color: #00aff0;
-    boxSizing: "border-box",
-    border: 6px solid #00aff0;
-    transition: all ease-in-out 0.5s;
-    transform: scale(1.2);
-  }
   @media screen and (max-with: 960px) {
     display: flex;
     flex-direction: column-reverse;
   }
 `;
-export const TextImage = styled.div``;
+export const TextImage = styled.div`
+text-align-last: center;
+`;
 
 export const MessageBox = styled.div``;
 export const LoadingBox = styled.div``;

@@ -49,11 +49,12 @@ button {
       }
 `;
 export const NameText = styled.div`
-  width: 25rem;
-  height: 4rem;
+  width: 100%;
+  height: 100%;
   align-content: center;
   justify-content: center;
   margin-bottom: 30px;
+  box-sizing: content-box;
 `;
 export const Email = styled.div``;
 export const Confirm = styled.div``;
@@ -85,7 +86,11 @@ export const RegisterLink = styled.div`
     transform: scale(1.2);
   }
 `;
-
+export const PhoneSel = styled.div`
+  display: inline-flex;
+`;
+export const PhoneName = styled.div`
+`;
 export const Danger = styled.div``;
 export const DangerText = styled.div``;
 export const DangerMail = styled.div``;

@@ -12,8 +12,10 @@ const REFERRAL_CODE_LENGTH = 8;
 const referralCode = generate(CHARACTER_SET, REFERRAL_CODE_LENGTH);
 // validate user schema        
 const userSchema = Joi.object().keys({
+    name: Joi.string(),
     email: Joi.string().email({ minDomainSegments: 2 }),
     password: Joi.string().min(4),
+    phone: Joi.number(),
     confirmPassword: Joi.string().valid(Joi.ref("password")),
   });
 
@@ -328,7 +330,6 @@ exports.Logout = async (req, res) => {
         console.error("user-logout-error", error);
         return res.sat(500).json({
             error: true,
-
             message: error.message,
         });
     }

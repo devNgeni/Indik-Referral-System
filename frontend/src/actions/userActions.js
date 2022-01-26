@@ -21,18 +21,22 @@ import {
     USER_DELETE_FAIL,
     USER_UPDATE_SUCCESS,
     USER_UPDATE_FAIL,
+    USER_ACTIVATE_FAIL,
+    USER_ACTIVATE_REQUEST,
+    USER_ACTIVATE_RESEND,
+    USER_ACTIVATE_SUCCESS
 } from '../constants/userConstants';
 import {
     endpoints
 } from '../api/endpoints';
-
-export const Register = (name, email, phone, password) => async (dispatch) => {
+export const Register = (name, email, phone, password, confirmPassword) => async (dispatch) => {
     dispatch({
         type: USER_REGISTER_REQUEST,
         payload: {
             email,
             phone,
-            password
+            password,
+            confirmPassword
         }
     });
     try {
@@ -42,14 +46,11 @@ export const Register = (name, email, phone, password) => async (dispatch) => {
             name,
             email,
             phone,
-            password
+            password,
+            confirmPassword
         })
         dispatch({
             type: USER_REGISTER_SUCCESS,
-            payload: data
-        });
-        dispatch({
-            type: USER_SIGNIN_SUCCESS,
             payload: data
         });
         localStorage.setItem('userInfo', JSON.stringify(data));
@@ -61,6 +62,40 @@ export const Register = (name, email, phone, password) => async (dispatch) => {
         });
     }
 };
+export const activate = (email, code) => async (dispatch) => {
+    dispatch({
+        type: USER_ACTIVATE_REQUEST,
+        payload: {
+            email,
+            code
+        }
+    });
+    try {
+        const { data } = await Axios.post(endpoints.activate.url, {
+            email,
+            code
+        });
+        dispatch({
+            type: USER_ACTIVATE_SUCCESS,
+            payload: data
+        });
+        localStorage.setItem('userInfo', JSON.stringify(data));
+    } catch (error) {
+        dispatch({
+            type: USER_ACTIVATE_FAIL,
+            payload: error.response && error.response.data.message ?
+            error.response.data.message : error.message
+        });
+    }
+};
+
+export const reSend = () => (dispatch) => {
+    localStorage.removeItem("userInfo");
+    dispatch({
+        type: USER_ACTIVATE_RESEND
+    })
+    document.location.href = '/signup';
+}
 
 export const signin = (email, password) => async (dispatch) => {
     dispatch({

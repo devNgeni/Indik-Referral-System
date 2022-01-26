@@ -13,14 +13,27 @@ display: grid;
 }
 `;
 
+export const FriendLogo = styled.div`
+padding-left: 20px;
+`;
+
+export const Friend = styled.div`
+padding-top: 10px;
+`;
+
 export const FriendWord = styled.div`
 font-family: "Gill Sans", sans-serif;
+padding-left: 20px;
+padding-bottom: 5px;
 `;
 export const FriendHeader = styled.div`
 font-family: "Gill Sans", sans-serif;
-padding-top: 20px;
+font-size: 1.5em;
+padding-left: 20px;
+padding-top: 50px;
 display: flex;
-width: 76%;
+width: 90%;
+
 `;
 export const ProfileImage = styled.div`
 text-align-last: right;
@@ -34,7 +47,9 @@ width: 80%;
 export const FriendDash = styled.div`
 font-family: "Gill Sans", sans-serif;
 font-weight:  bold;
-padding-top: 10px;
+padding-top: 20px;
+padding-left: 20px;
+padding-bottom: 5px;
 font-size: 25px;
 `;
 export const FriendTxt = styled.div`
@@ -44,6 +59,8 @@ font-weight: bolder;
 export const FriendDiv = styled.div`
 font-family: "Gill Sans", sans-serif;
 font-size: 32px;
+color: 000000;
+padding: 10px
 `;
 export const FriendColumn = styled.div`
 font-weight: 200;
@@ -52,7 +69,12 @@ text-align-last: start;
 `;
 export const FriendContent = styled.div`
 text-align-last: right;
-padding-top: 20px;
+display: inline-flex;
+padding-top: 50px;
+padding-right: 2px;
+padding-bottom: 20px;
+justify-content: space-evenly;
+width: 300px;
 `;
 export const Friendparagraph = styled.div`
 display: flex;
@@ -62,17 +84,20 @@ width: 80%;
 `;
 export const Friendimg = styled.div`
 background-color: #ade9ff;
-height: 150px;
+height: 20vh;
 display: flex;
 `;
 export const Friendbg = styled.div`
+display: inline-flex;
 text-align-last: start;
-margin: 2em;
-`;
+margin-top: 20px;
+margin-bottom: 20px;
+`;  
 
 export const FriendNav = styled.div`
 font-family: "Gill Sans", sans-serif;
 font-weight: bold;
+font-size: 1.5em;
 text-align-last: start;
 padding: 20px;
 width: 85%;
@@ -80,6 +105,7 @@ width: 85%;
 
 export const FriendNum = styled.div`
 display: flex;
+padding-bottom: 50px;
 `;
 export const Friendcont = styled.div`
 text-align-last: last;
@@ -89,6 +115,7 @@ export const FriendSet = styled.div`
 font-family: "Gill Sans", sans-serif;
 display: flex;
 padding-top: 20px;
+padding-left: 20px;
 `;
 export const FriendOne = styled.div``;
 export const FriendTwo = styled.div`
@@ -113,4 +140,9 @@ padding-top: 4px;
 export const FriendFour = styled.div`
 background-color: #ade9ff;
 border-radius: 15px;
+height: 15em;
+justify-content: center;
+align-text: center;
+text-align-last: center;
 `;
+export const FriendCopy = styled.div``;

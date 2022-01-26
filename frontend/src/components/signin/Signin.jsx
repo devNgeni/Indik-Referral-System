@@ -31,7 +31,7 @@ function Signin() {
 
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
-  const redirect = redirectInUrl ? redirectInUrl : "/dashboard";
+  const redirect = redirectInUrl ? redirectInUrl : "/login";
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo, loading, error } = userSignin;
 
@@ -81,7 +81,7 @@ function Signin() {
           </NameText>
           <TextImage>
             <img
-              style={{ margin: "10px" }}
+              style={{ margin: "10px"}}
               alt={isRevealPwd ? "Hide password" : "Show password"}
               src={isRevealPwd ? hidePwdImg : showPwdImg}
               onClick={() => setIsRevealPwd((prevState) => !prevState)}
