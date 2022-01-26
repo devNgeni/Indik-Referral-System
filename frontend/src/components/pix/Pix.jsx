@@ -42,8 +42,9 @@ class Pix extends React.Component {
           scan the QR Code or copy and paste the code
         </h3>
 		{
-			item?.pixCharge.qrcode,
-			<img src={item?.pixCharge.imagemQrcode} />
+			
+			<img src={item?.pixCharge.imagemQrcode} />,
+			item?.pixCharge.qrcode
 			
 		}
        
