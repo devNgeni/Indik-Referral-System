@@ -42,9 +42,10 @@ div.css-1480iag-MuiInputBase-root-MuiInput-root {
   border: 2px #00aff0 solid;
   border-radius: 6px;
   text-decoration: none;
-  box-sizing: border-box;
 }
-
+div.css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+  border-radius: 6px;
+}
 Link {
   color: #00aff0 !important;
   text-decoration: none !important;

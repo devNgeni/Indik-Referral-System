@@ -24,7 +24,11 @@ import {
     USER_UPDATE_PROFILE_SUCCESS,
     USER_UPDATE_REQUEST,
     USER_UPDATE_RESET,
-    USER_UPDATE_SUCCESS
+    USER_UPDATE_SUCCESS,
+    USER_ACTIVATE_FAIL,
+    USER_ACTIVATE_REQUEST,
+    USER_ACTIVATE_RESEND,
+    USER_ACTIVATE_SUCCESS
   } from '../constants/userConstants';
 
   export const userRegisterReducer = (state = {}, action) => {
@@ -111,7 +115,20 @@ export const userListReducer = (state ={ loading: true }, action) => {
             return state;            
     }
 };
-
+export const userActivateReducer = (state = {loading: true}, action) => {
+    switch (action.type) {
+        case USER_ACTIVATE_REQUEST:
+            return {loading: true };
+        case USER_ACTIVATE_SUCCESS:
+            return { loading: false, userInfo: action.payload };
+        case USER_ACTIVATE_FAIL:
+            return {loading: false, error: action.payload };
+        case USER_ACTIVATE_RESEND:
+            return { loading: true };
+            default:
+                return state;        
+    }
+}
 export const userDeleteReducer = (state = { loading: true },  action) => {
     switch (action.type) {
         case USER_DELETE_REQUEST:
