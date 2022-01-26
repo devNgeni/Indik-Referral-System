@@ -1,43 +1,56 @@
+import React from "react";
+import QRCode from "qrcode.react";
 
-import React from 'react';
-import axios from 'axios';
-// import BASE_URL from '../../../../backend/Pix/server/api';
+class Pix extends React.Component {
+  // Constructor
+  constructor(props) {
+    super(props);
 
-
- export default class Pix extends React.Component {
-  state = {
-    name: ''
-  }
-
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const user = {
-      name: this.state.name
+    this.state = {
+      item: null,
+      DataisLoaded: false,
     };
 
-    axios.post(`http://localhost:3001/api/v1/createCharge`)
-      .then(response => {
-        console.log(user);
-        console.log(response.txid);
-      })
   }
 
+  componentDidMount() {
+    fetch("http://localhost:3001/api/v1/createCharge")
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({
+          item: json,
+          DataisLoaded: true,
+        });
+        console.log(json);
+      });
+	 
+
+  }
   render() {
+    const { DataisLoaded, item } = this.state;
+    if (!DataisLoaded)
+      return (
+        <div>
+          <h1>Please wait the data is loading!!</h1>
+        </div>
+      );
+
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Person Name:
-            <input type="text" name="name" onChange={this.handleChange} />
-          </label>
-          <button type="submit">Add</button>
-        </form>
+      <div className="Pix">
+        <h3>
+          Open the Pix app with your registered Pix Key, choose Pay with pix and
+          scan the QR Code or copy and paste the code
+        </h3>
+		{
+			
+			<img src={item?.pixCharge.imagemQrcode} />,
+			item?.pixCharge.qrcode
+			
+		}
+       
       </div>
-    )
+    );
   }
 }
+
+export default Pix;

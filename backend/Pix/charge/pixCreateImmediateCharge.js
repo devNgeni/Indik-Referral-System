@@ -4,8 +4,9 @@ let Gerencianet = require("gn-api-sdk-node");
 let options = require("../credentials");
 
 let QrCode = require("../location/pixGenerateQRCode");
+var QRcode = require('qrcode');
 
-const createPixCharge = async () => {
+const createPixCharge = async() => {
   let gerencianet = new Gerencianet(options);
 
   let chargeData = {
@@ -32,19 +33,20 @@ const createPixCharge = async () => {
     ],
   };
 
-  gerencianet
+  return await gerencianet
     .pixCreateImmediateCharge([], chargeData)
 
-    .then((resposta) => {
+    .then(async(resposta) => {
       console.log(resposta);
       let params = {
         id: resposta.loc.id,
       };
 
-      gerencianet
+      return await gerencianet
         .pixGenerateQRCode(params)
         .then((qrData) => {
           console.log("QR Data: ", qrData);
+          return qrData
         })
         .catch((error) => {
           console.log("Error", error);
@@ -55,4 +57,4 @@ const createPixCharge = async () => {
     });
 };
 
-module.exports = { createPixCharge };
+module.exports = createPixCharge;
