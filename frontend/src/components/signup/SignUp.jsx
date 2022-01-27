@@ -19,14 +19,15 @@ import {
   RegisterText,
   DangerContainer,
   AlertText,
-  PhoneSel
+  PhoneSel,
+  ContainerSub
 } from "./SignupElement";
 
 // Form validation
 const required = (value) => {
   if (!value) {
     return (
-    <AlertText className="alert alert-danger" role="alert">This field is Required</AlertText>
+    <AlertText className="alert alert-danger" role="alert">!This field is Required</AlertText>
     );
   }
 };
@@ -53,7 +54,7 @@ const phone = (value) => {
   if (value.length < 10 || value.length > 12) {
     return (
       <AlertText className="alert alert-danger" role="alert">
-        The username must be between 10 and 12 characters.
+        The phone must be between 10 and 12 characters.
       </AlertText>
     );
   }
@@ -70,7 +71,7 @@ const vpassword = (value) => {
 };
 
 const confirmPassword = (value) => {
-  if (value !== vpassword.value) {
+  if (value.length < 6 || value.length > 40) {
     return (
       <AlertText className="alert alert-danger" role="alert">
         ConfirmPassword must much with the Password
@@ -136,7 +137,8 @@ class SignUp extends Component {
 
     this.form.validateAll();
 
-    if (this.check.context._errors.length === 0) {
+    console.log("Form Error", this.check.context.errors);
+    if (this.check.context.errors.length === 0) {
       this.props
         .dispatch(
           Register(
@@ -163,7 +165,8 @@ class SignUp extends Component {
   render() {
     const { message } = this.props;
     return (
-      <Container>
+      <Container className="card card-container">
+        <ContainerSub>
         <Header>Let's Create Your Account</Header>
         <TextArea>
           We will send a text to verify your mobile number and a link to your
@@ -242,7 +245,7 @@ class SignUp extends Component {
           <PhoneSel
               style={{ position: "absolute" }}
               ref={(c) => {
-                this.check = c;
+                this.checkContext = c;
               }}
             />
           {message && (
@@ -260,7 +263,7 @@ class SignUp extends Component {
             </div>
           )}
           </DangerContainer>
-        </Form>
+        
         <Registered>
           <RegisterText>Already Registered?</RegisterText>
           <RegisterLink>
@@ -278,6 +281,8 @@ class SignUp extends Component {
             </Link>
           </RegisterLink>
         </Registered>
+        </Form>
+        </ContainerSub>
       </Container>
     );
   }

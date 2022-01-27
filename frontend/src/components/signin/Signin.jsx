@@ -14,12 +14,17 @@ import {
   TextImage,
   LoadingBox,
   MessageBox,
+  ContainerSub
+
 } from "./SigninElement";
 import hidePwdImg from "../../images/Show/hidePwdImg.svg";
 import showPwdImg from "../../images/Show/hidePwdImg.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { signin } from "../../actions/userActions";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+
 
 function Signin() {
   const [pwd, setPwd] = useState("");
@@ -47,14 +52,16 @@ function Signin() {
   }, [navigate, redirect, userInfo]);
 
   return (
-    <Container>
+    <Container className="card card-container">
+      <ContainerSub>
       <Header>Sign into Your Account</Header>
-      <form className={Label} onSubmit={submitHandler}>
+      <Form className={Label} onSubmit={submitHandler}>
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox>{error}</MessageBox>}
-        <Email>
+        <Email className={Label}>
           <NameText>
-            <input
+            <Input
+              style={{width:"450px"}}
               autoFocus="autofocus"
               autoComplete="off"
               label="email"
@@ -62,16 +69,17 @@ function Signin() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter Email"
               required
-              className={Name}
+              className="form-control"
               onFocus={(e) => {}}
             />
           </NameText>
           <NameText>
-            <input
+            <Input
               name="pwd"
               placeholder="Enter Password"
               type={isRevealPwd ? "text" : "password"}
               value={pwd}
+              className="form-control"
               required
               onChange={(e) => {
                 setPwd(e.target.value);
@@ -88,7 +96,7 @@ function Signin() {
             />
           </TextImage>
         </Email>
-      </form>
+     
 
       <TextArea>
         <Link
@@ -106,7 +114,7 @@ function Signin() {
         </Link>
       </TextArea>
       <TextBtn>
-        <button className="obato">
+        <button>
           Sign In
         </button>
       </TextBtn>
@@ -129,6 +137,8 @@ function Signin() {
           </Link>
         </RegisterLink>
       </Registered>
+       </Form>
+      </ContainerSub>
     </Container>
   );
 }

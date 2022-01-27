@@ -11,6 +11,8 @@ import {
   RegisterText,
 } from "./ForgotElement";
 import { Link } from "react-router-dom";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
 
 function forgot() {
   return (
@@ -20,15 +22,15 @@ function forgot() {
         We will send you a password recovery Link To Your email address
       </TextArea>
       <Mobile>
-        <form className={Content}>
-          <input
-            style={{ height: '3em'}}
+        <Form className={Content}>
+          <Input
+            style={{ height: '3em', width: "450px"}}
             label="Username"
             name="username"
             placeholder="Phone or Email"
-            className={Name}
+            className="form-control"
           />
-        </form>
+        </Form>
       </Mobile>
       <TextBtn>
         <button

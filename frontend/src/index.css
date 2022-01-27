@@ -16,9 +16,9 @@ Form {
     justify-items: center !important;
     justify-self: center !important;
     align-items: center !important;
-    display: flex;
+    display: block;
     justify-content: center;
-    width: 100%;
+    width: 450px;
     height: 100%;
     font-size: 1.6rem;
   text-decoration: none !important;
