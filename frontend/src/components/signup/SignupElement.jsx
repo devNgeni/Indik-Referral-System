@@ -81,7 +81,7 @@ export const RegisterLink = styled.div`
   }
 `;
 export const PhoneSel = styled.div`
-  display: inline-flex;
+  display: none;
 `;
 export const PhoneName = styled.div`
 `;

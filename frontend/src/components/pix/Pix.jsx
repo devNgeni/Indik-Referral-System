@@ -43,7 +43,7 @@ class Pix extends React.Component {
         </h3>
 		{
 			
-			<img src={item?.pixCharge.imagemQrcode} />,
+			<img src={item?.pixCharge.imagemQrcode} alt="icon" />,
 			item?.pixCharge.qrcode
 			
 		}

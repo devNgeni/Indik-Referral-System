@@ -9,7 +9,9 @@
   margin: 0 auto;
   padding: 32px;
 }
-
+.CheckButton.button {
+  display: none !important;
+}
 button {
   text-align-last: center !important;
   display: flex !important;
@@ -29,6 +31,7 @@ button {
 button:hover {
   color: #00aff0;
   background-color: #fff;
+  border: 2px #00aff0 solid;
 }
 
 .content {
@@ -58,9 +61,6 @@ Link:hover {
   transition: all ease-in-out 0.5s;
   transform: scale(1.2);
   text-decoration: none !important;
-}
-.CheckButton {
-display: none !important;
 }
 .ReactInputVerificationCode__item {
   width: 50%;

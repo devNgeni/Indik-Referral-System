@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Register } from "../../actions/userActions";
 import Form from "react-validation/build/form";
-import CheckButton from "react-validation/build/button";
+import Input from "react-validation/build/input";
 import { isEmail } from "validator";
 import {
   Container,
@@ -19,27 +19,32 @@ import {
   RegisterText,
   DangerContainer,
   AlertText,
+  PhoneSel
 } from "./SignupElement";
 
 // Form validation
 const required = (value) => {
   if (!value) {
-    return <AlertText role="alert">This field is Required</AlertText>;
+    return (
+    <AlertText className="alert alert-danger" role="alert">This field is Required</AlertText>
+    );
+  }
+};
+
+const vusername = (value) => {
+  if (value.length < 3 || value.length > 20) {
+    return (
+      <AlertText className="alert alert-danger" role="alert">
+        The username must be between 3 and 20 characters.
+      </AlertText>
+    );
   }
 };
 
 const email = (value) => {
   if (!isEmail(value)) {
-    return <AlertText role="alert">This is not a valid email.</AlertText>;
-  }
-};
-
-const name = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <AlertText role="alert">
-        The username must be between 3 and 20 characters.
-      </AlertText>
+    return(
+    <AlertText className="alert alert-danger" role="alert">This is not a valid email.</AlertText>
     );
   }
 };
@@ -47,14 +52,14 @@ const name = (value) => {
 const phone = (value) => {
   if (value.length < 10 || value.length > 12) {
     return (
-      <AlertText role="alert">
+      <AlertText className="alert alert-danger" role="alert">
         The username must be between 10 and 12 characters.
       </AlertText>
     );
   }
 };
 
-const password = (value) => {
+const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
       <AlertText role="alert">
@@ -65,9 +70,9 @@ const password = (value) => {
 };
 
 const confirmPassword = (value) => {
-  if (value === password.value) {
+  if (value !== vpassword.value) {
     return (
-      <AlertText role="alert">
+      <AlertText className="alert alert-danger" role="alert">
         ConfirmPassword must much with the Password
       </AlertText>
     );
@@ -77,6 +82,7 @@ const confirmPassword = (value) => {
 class SignUp extends Component {
   constructor(props) {
     super(props);
+    this.handleRegister = this.handleRegister.bind(this);
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePhone = this.onChangePhone.bind(this);
@@ -84,7 +90,7 @@ class SignUp extends Component {
     this.onChangeconfirmPassword = this.onChangeconfirmPassword.bind(this);
 
     this.state = {
-      name: "",
+      username: "",
       email: "",
       phone: "",
       password: "",
@@ -94,7 +100,7 @@ class SignUp extends Component {
   }
   onChangeName(e) {
     this.setState({
-      name: e.target.value,
+      username: e.target.value,
     });
   }
 
@@ -130,11 +136,11 @@ class SignUp extends Component {
 
     this.form.validateAll();
 
-    if (this.checkBtn.context._errors.length === 0) {
+    if (this.check.context._errors.length === 0) {
       this.props
         .dispatch(
           Register(
-            this.state.name,
+            this.state.username,
             this.state.email,
             this.state.phone,
             this.state.password,
@@ -172,55 +178,55 @@ class SignUp extends Component {
           {!this.state.successful && (
             <DangerContainer className={Label}>
               <NameText>
-                <input
+                <Input
                   type="text"
                   name="name"
                   placeholder="Enter Name"
-                  className={Name}
-                  value={this.state.name}
+                  className="form-control"
+                  value={this.state.username}
                   onChange={this.onChangeName}
-                  validations={[required, name]}
-                ></input>
+                  validations={[required, vusername]}
+                ></Input>
               </NameText>
               <NameText>
-                <input
+                <Input
                   type="email"
                   name="email"
                   placeholder="Enter Email"
-                  className={Name}
+                  className="form-control"
                   value={this.state.email}
                   onChange={this.onChangeEmail}
                   validations={[required, email]}
                 />
               </NameText>
               <NameText>
-                <input
+                <Input
                   type="phone"
                   name="phone"
                   placeholder="Enter Phone Number"
-                  className={Name}
+                  className="form-control"
                   value={this.state.phone}
                   onChange={this.onChangePhone}
                   validations={[required, phone]}
                 />
               </NameText>
               <NameText>
-                <input
+                <Input
                   type="password"
                   name="password"
                   placeholder="Enter Password"
-                  className={Name}
+                  className="form-control"
                   value={this.state.password}
                   onChange={this.onChangePassword}
-                  validations={[required, password]}
+                  validations={[required, vpassword]}
                 />
               </NameText>
               <NameText>
-                <input
+                <Input
                   type="password"
                   name="confirmPassword"
                   placeholder="Enter Confirm Password"
-                  className={Name}
+                  className="form-control"
                   value={this.state.confirmPassword}
                   onChange={this.onChangeconfirmPassword}
                   validations={[required, confirmPassword]}
@@ -232,6 +238,13 @@ class SignUp extends Component {
               </TextBtn>
             </DangerContainer>
           )}
+          <DangerContainer className={Label}>
+          <PhoneSel
+              style={{ position: "absolute" }}
+              ref={(c) => {
+                this.check = c;
+              }}
+            />
           {message && (
             <div className="form-group">
               <div
@@ -246,6 +259,7 @@ class SignUp extends Component {
               </div>
             </div>
           )}
+          </DangerContainer>
         </Form>
         <Registered>
           <RegisterText>Already Registered?</RegisterText>
