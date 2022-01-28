@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { Register } from "../../actions/userActions";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import { isEmail } from "validator";
+import CheckButton from "react-validation/build/button";
 import {
   Container,
   Header,
@@ -14,178 +18,258 @@ import {
   RegisterLink,
   RegisterText,
   DangerContainer,
-  FormGroup,
-  FormLabel,
+  AlertText,
   PhoneSel,
+  ContainerSub,
 } from "./SignupElement";
-import PhoneInput from "material-ui-phone-number";
 
-function SignUp(props) {
-  const navigate = useNavigate();
-  const [phone, setPhone] = useState("");
+// Form validation
+const required = (value) => {
+  if (!value) {
+    return (
+      <AlertText className="alert alert-danger" role="alert">
+        !This field is Required
+      </AlertText>
+    );
+  }
+};
+
+const vusername = (value) => {
+  if (value.length < 3 || value.length > 20) {
+    return (
+      <AlertText className="alert alert-danger" role="alert">
+        The username must be between 3 and 20 characters.
+      </AlertText>
+    );
+  }
+};
+
+const vemail = (value) => {
+  if (!isEmail(value)) {
+    return (
+      <AlertText className="alert alert-danger" role="alert">
+        This is not a valid email.
+      </AlertText>
+    );
+  }
+};
+
+const vphone = (value) => {
+  if (value.length < 10 || value.length > 12) {
+    return (
+      <AlertText className="alert alert-danger" role="alert">
+        The phone must be between 10 and 12 characters.
+      </AlertText>
+    );
+  }
+};
+
+const vpassword = (value) => {
+  if (value.length < 6 || value.length > 40) {
+    return (
+      <AlertText role="alert">
+        The password must be between 6 and 40 characters.
+      </AlertText>
+    );
+  }
+};
+
+const vconfirmPassword = (value) => {
+  if (value.length < 6 || value.length > 40) {
+    return (
+      <AlertText className="alert alert-danger" role="alert">
+        ConfirmPassword must much with the Password
+      </AlertText>
+    );
+  }
+};
+
+const SignUp = () => {
+  const form = useRef();
+  const checkBtn = useRef();
   const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const { search } = useLocation();
-  const redirectInUrl = new URLSearchParams(search).get("redirect");
-  const redirect = redirectInUrl ? redirectInUrl : "/verification";
+  const [successful, setSuccessful] = useState("");
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { userInfo } = userRegister;
+  const { userInfo, loading, error } = userRegister;
 
+  const message = useSelector((state) => state.message);
   const dispatch = useDispatch();
-  const submitHandler = (e) => {
+
+  const onChangeName = (e) => {
+    const name = e.target.value;
+    setName(name);
+  };
+
+  const onChangeEmail = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+  };
+
+  const onChangePhone = (e) => {
+    const phone = e.target.value;
+    setPhone(phone);
+  };
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+  const onChangeconfirmPassword = (e) => {
+    const confirmPassword = e.target.value;
+    setConfirmPassword(confirmPassword);
+  };
+
+  const handleRegister = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Password and confirm password do not match");
-    } else {
-      dispatch(Register(name, email, phone, password, confirmPassword));
+
+    setSuccessful(false);
+
+    form.current.validateAll();
+
+    if (checkBtn.current.context._errors.length === 0) {
+      dispatch(Register(name, email, phone, password, confirmPassword))
+        .then(() => {
+          setSuccessful(true);
+        })
+        .catch(() => {
+          setSuccessful(false);
+        });
     }
   };
-  useEffect(() => {
-    if (userInfo) {
-      navigate(redirect);
-    }
-  }, [navigate, redirect, userInfo]);
-
-  const handleOnChange = value => {
-    setPhone(value);
-  };
-
-  return (
-    <Container>
-      <Header>Let's Create Your Account</Header>
-      <TextArea>
-        We will send a text to verify your mobile number and a link to your
-        email to verify your account. your email
-      </TextArea>
-      <form onSubmit={submitHandler} className={Label}>
-        <DangerContainer>
-          <NameText>
-            <input
-              type="text"
-              id="Username"
-              placeholder="Enter Name"
-              className={Name}
-              required
-              onChange={(e) => setName(e.target.value)}
-            ></input>
-          </NameText>
-          <NameText>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter Email"
-              className={Name}
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </NameText>
-          <PhoneSel>
-            <NameText>
-              <PhoneInput
-                defaultCountry="br"
-                regions={["south-america", "africa"]}
-                style={{width: "4rem", height: "4rem", }}
-                type="phone"
-                className={"MuiFormHelperText-root MuiFormHelperText-contained Mui-error MuiFormHelperText-filled MuiFormHelperText-marginDense"}
-                value={phone}
-                onChange={(e) => setPhone(handleOnChange)}
-                isValid={(value, country) => {
-                  if (value.match(/12345/)) {
-                    return 'Invalid value: '+value+', '+country.name;
-                  } else if (value.match(/1234/)) {
-                    return false;
-                  } else {
-                    return true;
-                  }
-                }}
-              />
-              {phone}
-            </NameText>
-          </PhoneSel>
-          <NameText>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter Password"
-              className={Name}
-              value={password}
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </NameText>
-          <NameText>
-            <input
-              type="password"
-              id="confirmPassword"
-              placeholder="Enter Confirm Password"
-              className={Name}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </NameText>
-        </DangerContainer>
-      </form>
-      <FormGroup>
-        <FormLabel
-          style={{ justifyContent: "center" }}
-          label={
-            <Link
-              to="/"
-              style={{
-                fontFamily: '"Gill Sans", sans-serif',
-                color: "#00AFF0",
-                textDecoration: "none",
-                fontWeight: "300px",
-              }}
-            >
-              <span style={{ color: "#333" }}>I agree to the</span> Terms &
-              conditions
-            </Link>
-          }
-        />
-      </FormGroup>
-      <TextBtn>
-        <button
-          className="obato"
-          onClick={() =>
-            dispatch(Register(name, email, phone, password, confirmPassword))
-          }
-          style={{
-            color: "white",
-            border: "none",
-            padding: "15px",
-            borderRadius: "15px",
-            width: "400px",
-            fontWeight: "bold",
-          }}
-        >
-          Create Account
-        </button>
-      </TextBtn>
-      <Registered>
-        <RegisterText>Already Registered?</RegisterText>
-        <RegisterLink>
-          <Link
-            to="/Login"
-            style={{
-              color: "#00AFF0",
-              textDecoration: "none",
-              fontSize: "1em",
-              fontWeight: "bold",
-              paddingLeft: "15px",
-            }}
+    return (
+      <Container className="card card-container">
+        <ContainerSub>
+          <Header>Let's Create Your Account</Header>
+          <TextArea>
+            We will send a text to verify your mobile number and a link to your
+            email to verify your account. your email
+          </TextArea>
+          <Form
+            onSubmit={handleRegister}
+            ref={form}
           >
-            Sign in
-          </Link>
-        </RegisterLink>
-      </Registered>
-    </Container>
-  );
-}
+            {!successful && (
+              <DangerContainer className={Label}>
+                <NameText>
+                  <label htmlFor="name">Name</label>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Enter User Name"
+                    className="form-control"
+                    value={name}
+                    onChange={onChangeName}
+                    validations={[required, vusername]}
+                  ></Input>
+                </NameText>
+                <NameText>
+                  <label htmlFor="email">Email</label>
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Enter a Valid Email"
+                    className="form-control"
+                    value={email}
+                    onChange={onChangeEmail}
+                    validations={[required, vemail]}
+                  />
+                </NameText>
+                <NameText>
+                  <label htmlFor="phone">Phone</label>
+                  <Input
+                    type="phone"
+                    name="phone"
+                    placeholder="Enter Phone Number"
+                    className="form-control"
+                    value={phone}
+                    onChange={onChangePhone}
+                    validations={[required, vphone]}
+                  />
+                </NameText>
+                <NameText>
+                  <label htmlFor="password">Password</label>
+                  <Input
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    className="form-control"
+                    value={password}
+                    onChange={onChangePassword}
+                    validations={[required, vpassword]}
+                  />
+                </NameText>
+                <NameText>
+                  <label htmlFor="confirmPasswword">Confirm Password</label>
+                  <Input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Enter Confirm Password"
+                    className="form-control"
+                    value={confirmPassword}
+                    onChange={onChangeconfirmPassword}
+                    validations={[required, vconfirmPassword]}
+                  />
+                </NameText>
+
+                <TextBtn>
+                  <button type="submit">Create Account</button>
+                </TextBtn>
+              </DangerContainer>
+            )}
+            <DangerContainer className={Label}>
+              <CheckButton
+                style={{
+                  display: "none",
+                  backgroundColor: "white",
+                  width: "1px",
+                  height: "1px",
+                }}
+                ref={checkBtn}
+              />
+              {message && (
+                <div className="form-group">
+                  <div
+                    className={
+                      successful
+                        ? "alert alert-success"
+                        : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    {message}
+                  </div>
+                </div>
+              )}
+            </DangerContainer>
+
+            <Registered>
+              <RegisterText>Already Registered?</RegisterText>
+              <RegisterLink>
+                <Link
+                  to="/Login"
+                  style={{
+                    color: "#00AFF0",
+                    textDecoration: "none",
+                    fontSize: "1em",
+                    fontWeight: "bold",
+                    paddingLeft: "15px",
+                  }}
+                >
+                  Sign in
+                </Link>
+              </RegisterLink>
+            </Registered>
+          </Form>
+        </ContainerSub>
+      </Container>
+    );
+  
+};
 
 export default SignUp;
-
 // 3150296121

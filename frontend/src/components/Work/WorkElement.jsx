@@ -77,4 +77,6 @@ export const TableIcon = styled.div`
   border-radius: 14px;
 `;
 
-export const TableSpan = styled.div``;
+export const TableSpan = styled.div`
+padding: 40px;
+`;

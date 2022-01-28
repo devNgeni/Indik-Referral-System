@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   justify-content: center;
   display: grid;
+  max-width: 400px !important;
   @media screen and (min-width: 1024px) {
     width: 100%;
     height: 100%;
@@ -11,6 +12,12 @@ export const Container = styled.div`
   @media screen and (min-width: 960px) {
     justify-content: center;
   }
+`;
+export const ContainerSub = styled.div`
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
 `;
 export const Header = styled.div`
   font-weight: bold;
@@ -34,20 +41,22 @@ export const Name = styled.div`
   border: 1px solid #333;
 `;
 export const TextBtn = styled.div`
-display: flex;
-justify-content: center;
-color: white;
-
-button {
-        background-color: #00AFF0;
-        border-radius: 6px
-        color: #ffff;
- }
- :hover {
-        transition: all ease-in-out 0.5s;
-        transform: scale(1.2);
-      }
+  justify-content: center;
+  color: white;
 `;
+export const AlertText = styled.div`
+  font-family: "Gill Sans", sans-serif;
+  font-size: 1.5rem;
+  background-color: #ffc0cb;
+  color: #8b0000;
+  border: auto #8b0000 solid;
+  width: 450px;
+  height: 5rem;
+  padding: 20px;
+  text-align-last: center;
+  justify-items: center;
+`;
+
 export const NameText = styled.div`
   width: 100%;
   height: 100%;
@@ -69,7 +78,7 @@ export const RegisterText = styled.div`
   font-family: "Gill Sans", sans-serif;
   text-align-last: center;
   justify-content: center;
-  font-size: 1.5em;
+  font-size: 1.5em !;
   padding-top: 10px;
   margin-top: 10px;
 `;
@@ -78,7 +87,7 @@ export const RegisterLink = styled.div`
   font-family: "Gill Sans", sans-serif;
   text-align-last: center;
   justify-content: center;
-  font-size: 1.5em;
+  font-size: 1.5em !;
   padding-top: 10px;
   margin-top: 10px;
   :hover {
@@ -87,16 +96,14 @@ export const RegisterLink = styled.div`
   }
 `;
 export const PhoneSel = styled.div`
-  display: inline-flex;
+  display: none;
 `;
-export const PhoneName = styled.div`
-`;
+export const PhoneName = styled.div``;
 export const Danger = styled.div``;
 export const DangerText = styled.div``;
 export const DangerMail = styled.div``;
 export const DangerContainer = styled.div`
   justify-content: center;
-  padding: 40px;
 `;
 
 export const FormGroup = styled.div``;

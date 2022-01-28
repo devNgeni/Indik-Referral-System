@@ -26,37 +26,15 @@ function Terms() {
       </TermsBg>
       <TermsDiv>
         <TermsHeader>
-          <ExternalLink href="https://www.iubenda.com/termos-e-condicoes/43737335">
-            <button
-              className="obato"
-              style={{
-                color: "white",
-                border: "none",
-                padding: "15px",
-                borderRadius: "8px",
-                width: "450px",
-                height: "3em",
-                fontWeight: "bold",
-              }}
-            >
+          <ExternalLink href="https://www.iubenda.com/termos-e-condicoes/43737335" style={{textDecoration: "none"}}>
+            <button>
               Terms & Conditions
             </button>
           </ExternalLink>
         </TermsHeader>
         <TermsList>
-        <ExternalLink href="https://www.iubenda.com/privacy-policy/43737335">
-            <button
-              className="obato"
-              style={{
-                color: "white",
-                border: "none",
-                padding: "15px",
-                borderRadius: "8px",
-                width: "450px",
-                height: "3em",
-                fontWeight: "bold",
-              }}
-            >
+        <ExternalLink href="https://www.iubenda.com/privacy-policy/43737335" style={{textDecoration: "none"}}>
+            <button>
               Privacy Policy
             </button>
           </ExternalLink>

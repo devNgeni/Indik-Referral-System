@@ -12,6 +12,12 @@ export const Container = styled.div`
     justify-content: center;
   }
 `;
+export const ContainerSub = styled.div`
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+`;
 export const Header = styled.div`
   font-weight: bold;
   font-size: 1.5rem;
@@ -24,9 +30,11 @@ export const Header = styled.div`
 export const TextArea = styled.div`
   font-family: "Gill Sans", sans-serif;
   font-size: 1.5rem;
-  text-align: center;
+  text-align-last: center;
   text-decoration: none;
   font-weight: bold;
+  width: 100%;
+  height: 4rem
   Link {
     color: #00aff0 !important;
   }
@@ -51,7 +59,7 @@ export const NameText = styled.div`
 export const Email = styled.div`
   justify-content: center !important;
   display: grid !important;
-  width: 20rem;
+  width: 100%;
 `;
 export const Confirm = styled.div``;
 export const Password = styled.div``;
@@ -66,10 +74,8 @@ export const RegisterText = styled.div`
   font-family: "Gill Sans", sans-serif;
   text-align: center;
   font-size: 1.5rem;
-  padding-top: 40px;
 `;
 export const RegisterLink = styled.div`
-  padding-top: 40px;
   padding-left: 20px;
   font-family: "Gill Sans", sans-serif;
   text-align: center;
@@ -87,12 +93,7 @@ export const TextBtn = styled.div`
   text-align: center;
   justify-content: center;
   color: white;
-
-  button {
-    background-color: #00aff0;
-    border-radius: 6px #00aff0;
-    color: #ffff;
-  }
+  padding: 4px;
   @media screen and (max-with: 960px) {
     display: flex;
     flex-direction: column-reverse;

@@ -30,17 +30,7 @@ function Profit() {
       <TextArea>The only thing you need is a license and 3 friends</TextArea>
       <TextBtn>
         <Link to="/signup">
-          <button
-            className="obato"
-            style={{
-              color: "white",
-              border: "none",
-              padding: "15px",
-              borderRadius: "8px",
-              width: "450px",
-              fontWeight: "bold",
-            }}
-          >
+          <button>
             Get Started
           </button>
         </Link>

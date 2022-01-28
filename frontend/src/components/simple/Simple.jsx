@@ -32,17 +32,7 @@ function Simple() {
       </TextArea>
       <TextBtn>
         <Link to="/signup">
-          <button
-            className="obato"
-            style={{
-              color: "white",
-              border: "none",
-              padding: "15px",
-              borderRadius: "8px",
-              width: "300px",
-              fontWeight: "bold",
-            }}
-          >
+          <button>
             Get Started
           </button>
         </Link>

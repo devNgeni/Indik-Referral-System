@@ -17,7 +17,7 @@ function Navbar() {
         <img
           src={hamberger}
           alt="menu-icon"
-          width="24px"
+          width="44px"
           onClick={showSidebar}
         />
       </Div>
