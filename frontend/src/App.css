@@ -132,7 +132,9 @@ Link.hover:after {
   background-clip: border-box;
   border-radius: 0.25rem;
 }
-
+.CheckButton.button {
+  display: none !important;
+}
 @media screen and (max-width: 960px) {
   :root {
     box-sizing: border-box;

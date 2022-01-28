@@ -1,11 +1,11 @@
-import React from "react";
-import { Component } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { Register } from "../../actions/userActions";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import { isEmail } from "validator";
+import CheckButton from "react-validation/build/button";
 import {
   Container,
   Header,
@@ -20,14 +20,16 @@ import {
   DangerContainer,
   AlertText,
   PhoneSel,
-  ContainerSub
+  ContainerSub,
 } from "./SignupElement";
 
 // Form validation
 const required = (value) => {
   if (!value) {
     return (
-    <AlertText className="alert alert-danger" role="alert">!This field is Required</AlertText>
+      <AlertText className="alert alert-danger" role="alert">
+        !This field is Required
+      </AlertText>
     );
   }
 };
@@ -42,15 +44,17 @@ const vusername = (value) => {
   }
 };
 
-const email = (value) => {
+const vemail = (value) => {
   if (!isEmail(value)) {
-    return(
-    <AlertText className="alert alert-danger" role="alert">This is not a valid email.</AlertText>
+    return (
+      <AlertText className="alert alert-danger" role="alert">
+        This is not a valid email.
+      </AlertText>
     );
   }
 };
 
-const phone = (value) => {
+const vphone = (value) => {
   if (value.length < 10 || value.length > 12) {
     return (
       <AlertText className="alert alert-danger" role="alert">
@@ -70,7 +74,7 @@ const vpassword = (value) => {
   }
 };
 
-const confirmPassword = (value) => {
+const vconfirmPassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
       <AlertText className="alert alert-danger" role="alert">
@@ -80,220 +84,192 @@ const confirmPassword = (value) => {
   }
 };
 
-class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.handleRegister = this.handleRegister.bind(this);
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onChangePhone = this.onChangePhone.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangeconfirmPassword = this.onChangeconfirmPassword.bind(this);
+const SignUp = () => {
+  const form = useRef();
+  const checkBtn = useRef();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [successful, setSuccessful] = useState("");
 
-    this.state = {
-      username: "",
-      email: "",
-      phone: "",
-      password: "",
-      confirmPassword: "",
-      successful: false,
-    };
-  }
-  onChangeName(e) {
-    this.setState({
-      username: e.target.value,
-    });
-  }
+  const userRegister = useSelector((state) => state.userRegister);
+  const { userInfo, loading, error } = userRegister;
 
-  onChangeEmail(e) {
-    this.setState({
-      email: e.target.value,
-    });
-  }
+  const message = useSelector((state) => state.message);
+  const dispatch = useDispatch();
 
-  onChangePhone(e) {
-    this.setState({
-      phone: e.target.value,
-    });
-  }
-  onChangePassword(e) {
-    this.setState({
-      password: e.target.value,
-    });
-  }
+  const onChangeName = (e) => {
+    const name = e.target.value;
+    setName(name);
+  };
 
-  onChangeconfirmPassword(e) {
-    this.setState({
-      confirmPassword: e.target.value,
-    });
-  }
+  const onChangeEmail = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+  };
 
-  handleRegister(e) {
+  const onChangePhone = (e) => {
+    const phone = e.target.value;
+    setPhone(phone);
+  };
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+  const onChangeconfirmPassword = (e) => {
+    const confirmPassword = e.target.value;
+    setConfirmPassword(confirmPassword);
+  };
+
+  const handleRegister = (e) => {
     e.preventDefault();
 
-    this.setState({
-      successful: false,
-    });
+    setSuccessful(false);
 
-    this.form.validateAll();
+    form.current.validateAll();
 
-    console.log("Form Error", this.check.context.errors);
-    if (this.check.context.errors.length === 0) {
-      this.props
-        .dispatch(
-          Register(
-            this.state.username,
-            this.state.email,
-            this.state.phone,
-            this.state.password,
-            this.state.confirmPassword
-          )
-        )
+    if (checkBtn.current.context._errors.length === 0) {
+      dispatch(Register(name, email, phone, password, confirmPassword))
         .then(() => {
-          this.setState({
-            successful: true,
-          });
+          setSuccessful(true);
         })
         .catch(() => {
-          this.setState({
-            successful: false,
-          });
+          setSuccessful(false);
         });
     }
-  }
-
-  render() {
-    const { message } = this.props;
+  };
     return (
       <Container className="card card-container">
         <ContainerSub>
-        <Header>Let's Create Your Account</Header>
-        <TextArea>
-          We will send a text to verify your mobile number and a link to your
-          email to verify your account. your email
-        </TextArea>
-        <Form
-          onSubmit={this.handleRegister}
-          ref={(c) => {
-            this.form = c;
-          }}
-        >
-          {!this.state.successful && (
-            <DangerContainer className={Label}>
-              <NameText>
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Enter Name"
-                  className="form-control"
-                  value={this.state.username}
-                  onChange={this.onChangeName}
-                  validations={[required, vusername]}
-                ></Input>
-              </NameText>
-              <NameText>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Enter Email"
-                  className="form-control"
-                  value={this.state.email}
-                  onChange={this.onChangeEmail}
-                  validations={[required, email]}
-                />
-              </NameText>
-              <NameText>
-                <Input
-                  type="phone"
-                  name="phone"
-                  placeholder="Enter Phone Number"
-                  className="form-control"
-                  value={this.state.phone}
-                  onChange={this.onChangePhone}
-                  validations={[required, phone]}
-                />
-              </NameText>
-              <NameText>
-                <Input
-                  type="password"
-                  name="password"
-                  placeholder="Enter Password"
-                  className="form-control"
-                  value={this.state.password}
-                  onChange={this.onChangePassword}
-                  validations={[required, vpassword]}
-                />
-              </NameText>
-              <NameText>
-                <Input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Enter Confirm Password"
-                  className="form-control"
-                  value={this.state.confirmPassword}
-                  onChange={this.onChangeconfirmPassword}
-                  validations={[required, confirmPassword]}
-                />
-              </NameText>
+          <Header>Let's Create Your Account</Header>
+          <TextArea>
+            We will send a text to verify your mobile number and a link to your
+            email to verify your account. your email
+          </TextArea>
+          <Form
+            onSubmit={handleRegister}
+            ref={form}
+          >
+            {!successful && (
+              <DangerContainer className={Label}>
+                <NameText>
+                  <label htmlFor="name">Name</label>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Enter User Name"
+                    className="form-control"
+                    value={name}
+                    onChange={onChangeName}
+                    validations={[required, vusername]}
+                  ></Input>
+                </NameText>
+                <NameText>
+                  <label htmlFor="email">Email</label>
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Enter a Valid Email"
+                    className="form-control"
+                    value={email}
+                    onChange={onChangeEmail}
+                    validations={[required, vemail]}
+                  />
+                </NameText>
+                <NameText>
+                  <label htmlFor="phone">Phone</label>
+                  <Input
+                    type="phone"
+                    name="phone"
+                    placeholder="Enter Phone Number"
+                    className="form-control"
+                    value={phone}
+                    onChange={onChangePhone}
+                    validations={[required, vphone]}
+                  />
+                </NameText>
+                <NameText>
+                  <label htmlFor="password">Password</label>
+                  <Input
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    className="form-control"
+                    value={password}
+                    onChange={onChangePassword}
+                    validations={[required, vpassword]}
+                  />
+                </NameText>
+                <NameText>
+                  <label htmlFor="confirmPasswword">Confirm Password</label>
+                  <Input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Enter Confirm Password"
+                    className="form-control"
+                    value={confirmPassword}
+                    onChange={onChangeconfirmPassword}
+                    validations={[required, vconfirmPassword]}
+                  />
+                </NameText>
 
-              <TextBtn>
-                <button type="submit">Create Account</button>
-              </TextBtn>
+                <TextBtn>
+                  <button type="submit">Create Account</button>
+                </TextBtn>
+              </DangerContainer>
+            )}
+            <DangerContainer className={Label}>
+              <CheckButton
+                style={{
+                  display: "none",
+                  backgroundColor: "white",
+                  width: "1px",
+                  height: "1px",
+                }}
+                ref={checkBtn}
+              />
+              {message && (
+                <div className="form-group">
+                  <div
+                    className={
+                      successful
+                        ? "alert alert-success"
+                        : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    {message}
+                  </div>
+                </div>
+              )}
             </DangerContainer>
-          )}
-          <DangerContainer className={Label}>
-          <PhoneSel
-              style={{ position: "absolute" }}
-              ref={(c) => {
-                this.checkContext = c;
-              }}
-            />
-          {message && (
-            <div className="form-group">
-              <div
-                className={
-                  this.state.successful
-                    ? "alert alert-success"
-                    : "alert alert-danger"
-                }
-                role="alert"
-              >
-                {message}
-              </div>
-            </div>
-          )}
-          </DangerContainer>
-        
-        <Registered>
-          <RegisterText>Already Registered?</RegisterText>
-          <RegisterLink>
-            <Link
-              to="/Login"
-              style={{
-                color: "#00AFF0",
-                textDecoration: "none",
-                fontSize: "1em",
-                fontWeight: "bold",
-                paddingLeft: "15px",
-              }}
-            >
-              Sign in
-            </Link>
-          </RegisterLink>
-        </Registered>
-        </Form>
+
+            <Registered>
+              <RegisterText>Already Registered?</RegisterText>
+              <RegisterLink>
+                <Link
+                  to="/Login"
+                  style={{
+                    color: "#00AFF0",
+                    textDecoration: "none",
+                    fontSize: "1em",
+                    fontWeight: "bold",
+                    paddingLeft: "15px",
+                  }}
+                >
+                  Sign in
+                </Link>
+              </RegisterLink>
+            </Registered>
+          </Form>
         </ContainerSub>
       </Container>
     );
-  }
-}
+  
+};
 
-function mapStateToProps(state) {
-  const message = state.message;
-  return {
-    message,
-  };
-}
-
-export default connect(mapStateToProps)(SignUp);
+export default SignUp;
 // 3150296121
