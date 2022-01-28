@@ -1,5 +1,5 @@
 import React from "react";
-import QRCode from "qrcode.react";
+import bank from "../../images/pix-banco-central.svg"
 
 class Pix extends React.Component {
   // Constructor
@@ -14,7 +14,7 @@ class Pix extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3001/api/v1/createCharge")
+    fetch("http://localhost:5000/api/v1/createCharge")
       .then((res) => res.json())
       .then((json) => {
         this.setState({
@@ -37,17 +37,19 @@ class Pix extends React.Component {
 
     return (
       <div className="Pix">
-        <h3>
-          Open the Pix app with your registered Pix Key, choose Pay with pix and
+        <img src={bank}  height= " 100px" width="80px"  />
+        <h5 >
+          Open the Pix app with your registered Pix Key, <br/> choose Pay with pix and
           scan the QR Code or copy and paste the code
-        </h3>
+        </h5>
 		{
 			
-			<img src={item?.pixCharge.imagemQrcode} />,
-			item?.pixCharge.qrcode
+			 item?.pixCharge.qrcode,
+        <img src={item?.pixCharge.imagemQrcode} />
+
 			
 		}
-       
+       <a href={item.pixCharge.qrcode.toString()} >Copiar codigo</a>
       </div>
     );
   }
