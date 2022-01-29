@@ -16,22 +16,21 @@ import Input from "react-validation/build/input";
 
 function forgot() {
   return (
-    <Container>
+    <Container style={{width: "100%"}}>
+      <Mobile>
       <Header>Forgot Password</Header>
       <TextArea>
         We will send you a password recovery Link To Your email address
       </TextArea>
-      <Mobile>
         <Form className={Content}>
           <Input
-            style={{ height: '3em', width: "450px"}}
+            style={{ height: '3em', width: "450px", justifyContent: "center", textAlignLast: "center"}}
             label="Username"
             name="username"
             placeholder="Phone or Email"
             className="form-control"
           />
         </Form>
-      </Mobile>
       <TextBtn>
         <button
           className="obato"
@@ -63,6 +62,7 @@ function forgot() {
           </Link>
         </RegisterText>
       </Registered>
+      </Mobile>
     </Container>
   );
 }
