@@ -49,7 +49,7 @@ function Work(props) {
       <WorkRich>GET RICH!</WorkRich>
       <ServiceTwo>
         <Link
-          to="/signup"
+          to="/Pix"
           style={{
             display: "inline-flex",
             backgroundColor: "rgb(0,175,240)",

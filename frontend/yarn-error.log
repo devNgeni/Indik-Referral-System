@@ -1,25 +1,25 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
+  /home/lenovo-t460s/.nvm/versions/node/v16.7.0/bin/node /home/lenovo-t460s/.nvm/versions/node/v16.7.0/bin/yarn start
 
 PATH: 
-  C:\Python310\Scripts\;C:\Python310\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Users\admin\AppData\Local\Microsoft\WindowsApps;;C:\Users\admin\.dotnet\tools;C:\Users\admin\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\admin\AppData\Local\Programs\Microsoft VS Code\bin
+  /home/lenovo-t460s/.nvm/versions/node/v16.7.0/bin:/home/lenovo-t460s/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/lenovo-t460s/.dotnet/tools
 
 Yarn version: 
-  1.22.17
+  1.22.11
 
 Node version: 
-  16.13.0
+  16.7.0
 
 Platform: 
-  win32 x64
+  linux x64
 
 Trace: 
-  SyntaxError: C:\Users\admin\Indik-Referral-System\frontend\package.json: Unexpected token < in JSON at position 542
+  SyntaxError: /home/lenovo-t460s/Desktop/PersonalProjects/Indik-Referral-System/frontend/package.json: Unexpected token < in JSON at position 542
       at JSON.parse (<anonymous>)
-      at C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at /home/lenovo-t460s/.nvm/versions/node/v16.7.0/lib/node_modules/yarn/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
-      at step (C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
-      at C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+      at step (/home/lenovo-t460s/.nvm/versions/node/v16.7.0/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/lenovo-t460s/.nvm/versions/node/v16.7.0/lib/node_modules/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {
@@ -43,9 +43,20 @@ npm manifest:
       "form": "^0.2.4",
   <<<<<<< HEAD
       "qrcode": "^1.5.0",
+  ||||||| ee22db6
+  <<<<<<< HEAD
+      "qrcode": "^1.5.0",
   =======
+  =======
+  >>>>>>> df583d7ab28af08ec6aa5f450b3e984e990eef91
       "material-ui-phone-number": "^3.0.0",
+  <<<<<<< HEAD
+  ||||||| ee22db6
   >>>>>>> 9fb3aa79cc327b57f3b87ff312804ef6c6bcc42f
+  =======
+      "qrcode": "1.3.3",
+      "qrcode.react": "^1.0.1",
+  >>>>>>> df583d7ab28af08ec6aa5f450b3e984e990eef91
       "react": "^16.8.0",
       "react-animations": "^1.0.0",
       "react-dom": "^17.0.2",
@@ -78,9 +89,7 @@ npm manifest:
       "workbox-range-requests": "^5.1.3",
       "workbox-routing": "^5.1.3",
       "workbox-strategies": "^5.1.3",
-      "workbox-streams": "^5.1.3",
-      "qrcode": "1.3.3",
-      "qrcode.react": "0.9.3"
+      "workbox-streams": "^5.1.3"
     },
     "scripts": {
       "start": "react-scripts start",
@@ -4088,6 +4097,11 @@ Lockfile:
       path-type "^4.0.0"
       yaml "^1.10.0"
   
+  country-flag-icons@^1.4.10:
+    version "1.4.20"
+    resolved "https://registry.yarnpkg.com/country-flag-icons/-/country-flag-icons-1.4.20.tgz#6676e68ad62dab4c0dcaa09f900f163609b32b92"
+    integrity sha512-f9/cO9IEDIkLdOQeTUMDLEWMcDk4qbTRjbQLpy5pm+yil7Fa7QkKxgiMOQ2z1+Jht8/BAD3JJAmPG4qtK/tbUw==
+  
   create-ecdh@^4.0.0:
     version "4.0.4"
     resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.4.tgz#d6e7f4bffa66736085a0762fd3a632684dabcc4e"
@@ -7957,6 +7971,14 @@ Lockfile:
     dependencies:
       css-mediaquery "^0.1.2"
   
+  material-ui-phone-number@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/material-ui-phone-number/-/material-ui-phone-number-3.0.0.tgz#4ea0d045f50af26db0994816520095be57d20dc1"
+    integrity sha512-wZX1PYv990nJUBko93AQxIfvFARHfMtnV/UT1/hVnbJP5x/K7MDuT5T2/ckIG6xyqTZ/wCcHdEK1P60uTOORwA==
+    dependencies:
+      country-flag-icons "^1.4.10"
+      lodash "^4.17.21"
+  
   md5.js@^1.3.4:
     version "1.3.5"
     resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
@@ -9881,11 +9903,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
     integrity sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8=
   
-  qrcode.react@0.9.3:
-    version "0.9.3"
-    resolved "https://registry.yarnpkg.com/qrcode.react/-/qrcode.react-0.9.3.tgz#91de1287912bdc5ccfb3b091737b828d6ced60c5"
-    integrity sha512-gGd30Ez7cmrKxyN2M3nueaNLk/f9J7NDRgaD5fVgxGpPLsYGWMn9UQ+XnDpv95cfszTQTdaf4QGLNMf3xU0hmw==
+  qrcode.react@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/qrcode.react/-/qrcode.react-1.0.1.tgz#2834bb50e5e275ffe5af6906eff15391fe9e38a5"
+    integrity sha512-8d3Tackk8IRLXTo67Y+c1rpaiXjoz/Dd2HpcMdW//62/x8J1Nbho14Kh8x974t9prsLHN6XqVgcnRiBGFptQmg==
     dependencies:
+      loose-envify "^1.4.0"
       prop-types "^15.6.0"
       qr.js "0.0.0"
   
@@ -10051,13 +10074,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-external-link/-/react-external-link-1.2.2.tgz#5a2123c75dc9eee439e3335e11b18f953db6affc"
     integrity sha512-CbJidnDmhcKlH5gVyt2dbmylcwayMY1wuRW8J1V1o7ZPMHdoUrDDmh/GvAMe847eI3sQBg7PLwSLAl5GiyuI+g==
   
-  react-final-form@^4.20.4:
-    version "6.5.7"
-    resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-6.5.7.tgz#0c1098accf0f0011adee5a46076ed1b99ed1b1ea"
-    integrity sha512-o7tvJXB+McGiXOILqIC8lnOcX4aLhIBiF/Xi9Qet35b7XOS8R7KL8HLRKTfnZWQJm6MCE15v1U0SFive0NcxyA==
-    dependencies:
-      "@babel/runtime" "^7.15.4"
-  
   react-icons@^4.3.1:
     version "4.3.1"
     resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
@@ -10120,7 +10136,7 @@ Lockfile:
     dependencies:
       prop-types "^15.5.10"
   
-  react-router-dom@^6.1.0:
+  react-router-dom@^6.2.1:
     version "6.2.1"
     resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.2.1.tgz#32ec81829152fbb8a7b045bf593a22eadf019bec"
     integrity sha512-I6Zax+/TH/cZMDpj3/4Fl2eaNdcvoxxHoH1tYOREsQ22OKDYofGebrNm6CTPUcvLvZm63NL/vzCYdjf9CUhqmA==
@@ -12164,7 +12180,7 @@ Lockfile:
       spdx-correct "^3.0.0"
       spdx-expression-parse "^3.0.0"
   
-  "validator@>= 0.4.9":
+  "validator@>= 0.4.9", validator@^13.7.0:
     version "13.7.0"
     resolved "https://registry.yarnpkg.com/validator/-/validator-13.7.0.tgz#4f9658ba13ba8f3d82ee881d3516489ea85c0857"
     integrity sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==

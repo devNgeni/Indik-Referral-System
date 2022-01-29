@@ -21,11 +21,11 @@ app.get("/api/v1/createCharge", async (request, response) => {
 });
 
 
-app.listen(3001, (error) => {
+app.listen(5000, (error) => {
   if (error) {
     console.log("Servidor não iniciado");
     console.log(error);
   } else {
-    console.log("Servidor rodando na porta 3001");
+    console.log("Servidor rodando na porta 5000");
   }
 });
