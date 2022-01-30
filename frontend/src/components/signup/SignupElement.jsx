@@ -18,6 +18,10 @@ export const ContainerSub = styled.div`
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
+  box-shadow: 5px 10px 18px #888888;
+  border-radius: 14px;
+  justify-content: center;
+  width: 500px;
 `;
 export const Header = styled.div`
   font-weight: bold;
@@ -62,7 +66,7 @@ export const NameText = styled.div`
   height: 100%;
   align-content: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   box-sizing: content-box;
 `;
 export const Email = styled.div``;

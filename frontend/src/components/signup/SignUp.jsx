@@ -219,14 +219,9 @@ const SignUp = () => {
                 </TextBtn>
               </DangerContainer>
             )}
-            <DangerContainer className={Label}>
+            <DangerContainer className={Label} style={{
+                  display: "none"}}>
               <CheckButton
-                style={{
-                  display: "none",
-                  backgroundColor: "white",
-                  width: "1px",
-                  height: "1px",
-                }}
                 ref={checkBtn}
               />
               {message && (

@@ -10,20 +10,19 @@ body {
   width: 100%;
   margin: 0 auto;
 }
-Form { 
-    justify-content: center !important;
-    align-content: center !important;
-    text-align-last: start !important;
-    justify-items: center !important;
-    justify-self: center !important;
-    align-items: center !important;
-    display: block;
-    justify-content: center;
-    width: 450px;
-    height: 100%;
-    font-size: 1.6rem;
+Form {
+  justify-content: center !important;
+  align-content: center !important;
+  text-align-last: start !important;
+  justify-items: center !important;
+  justify-self: center !important;
+  align-items: center !important;
+  display: block;
+  justify-content: center;
+  width: 450px;
+  height: 100%;
+  font-size: 1.6rem;
   text-decoration: none !important;
-
 }
 
 input,

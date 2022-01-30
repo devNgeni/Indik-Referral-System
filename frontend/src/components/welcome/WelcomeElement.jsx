@@ -52,6 +52,8 @@ export const TextBtn = styled.div`
 
   button:hover {
     border: 2px #00aff0 solid;
+    width: 450px;
+    height: 4rem;
   }
 
   @media screen and (max-with: 960px) {
@@ -60,6 +62,12 @@ export const TextBtn = styled.div`
     text-align: center;
     justify-content: center;
     text-decoration: none !important;
+
+    button:hover {
+      border: 2px #00aff0 solid;
+      width: 450px;
+      height: 4rem;
+    }
   }
 `;
 
