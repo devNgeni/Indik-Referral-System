@@ -44,17 +44,23 @@ button:hover {
   text-align: center !important;
   justify-content: center !important;
 }
-.form-control {
+Form {
+  text-align-last: start !important;
   display: block;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.2rem;
+  text-decoration: none !important;
+}
+.form-control {
   width: 100%;
-  height: calc(4rem + 2px);
+  height: calc(3rem + 2px);
   padding: 0.275rem 0.65rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
-  background-clip: padding-box;
   border: 1px solid #00aff0;
   border-radius: 1rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -129,7 +135,6 @@ Link.hover:after {
   border-radius: 2px;
 }
 .card {
-  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;

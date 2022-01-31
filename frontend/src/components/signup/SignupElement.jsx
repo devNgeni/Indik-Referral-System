@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   justify-content: center;
   display: grid;
-  max-width: 400px !important;
+  width: 100%;
+  height: 100%
+  background-color: black;
   @media screen and (min-width: 1024px) {
     width: 100%;
     height: 100%;
