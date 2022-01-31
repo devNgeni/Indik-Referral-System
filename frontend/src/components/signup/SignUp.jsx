@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Register } from "../../actions/userActions";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -11,7 +11,6 @@ import {
   Header,
   TextArea,
   Label,
-  Name,
   NameText,
   TextBtn,
   Registered,
@@ -19,7 +18,6 @@ import {
   RegisterText,
   DangerContainer,
   AlertText,
-  PhoneSel,
   ContainerSub,
 } from "./SignupElement";
 
@@ -95,7 +93,7 @@ const SignUp = () => {
   const [successful, setSuccessful] = useState("");
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { userInfo, loading, error } = userRegister;
+  // const { userInfo, loading, error } = userRegister;
 
   const message = useSelector((state) => state.message);
   const dispatch = useDispatch();
@@ -221,14 +219,9 @@ const SignUp = () => {
                 </TextBtn>
               </DangerContainer>
             )}
-            <DangerContainer className={Label}>
+            <DangerContainer className={Label} style={{
+                  display: "none"}}>
               <CheckButton
-                style={{
-                  display: "none",
-                  backgroundColor: "white",
-                  width: "1px",
-                  height: "1px",
-                }}
                 ref={checkBtn}
               />
               {message && (

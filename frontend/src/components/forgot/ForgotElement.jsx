@@ -3,10 +3,11 @@ import styled from 'styled-components'
 export const Container = styled.div`
 justify-content: center;
 display: grid;
+min-width: 400px !important;
 font-size: 1.5em;
 @media screen and (min-width: 1024px) {
-  width: 100%;
-  height: 100%;
+  width: 100%
+  height: 100%
   justify-content: center;
 }
 @media screen and (min-width: 960px) {
@@ -20,7 +21,7 @@ font-size: 2.5rem;
 padding: 20px;
 font-family: "Gill Sans", sans-serif;
 color: #333;
-Text-align-last: center;
+text-align-last: center;
 `;
 export const TextArea = styled.div`
 font-family: "Gill Sans", sans-serif;
@@ -31,8 +32,10 @@ margin: 10px;
 `;
 
 export const Mobile = styled.div`
-margin: 20px;
-height: 5rem;
+max-width: 44rem;
+max-height: 20rem;
+display: grid;
+justify-content: center;
 `;
 export const Name = styled.div`
 height: 5rem;
