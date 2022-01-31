@@ -14,14 +14,11 @@ export const Container = styled.div`
   }
 `;
 export const ContainerSub = styled.div`
-  position: relative;
-  width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   box-shadow: 5px 10px 18px #888888;
   border-radius: 14px;
   justify-content: center;
-  width: 500px;
   backgrond-color: #fff;
 `;
 export const Header = styled.div`
@@ -48,6 +45,7 @@ export const Name = styled.div`
 export const TextBtn = styled.div`
   justify-content: center;
   color: white;
+  display: flex;
 `;
 export const AlertText = styled.div`
   font-family: "Gill Sans", sans-serif;
@@ -67,7 +65,7 @@ export const NameText = styled.div`
   height: 100%;
   align-content: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   box-sizing: content-box;
 `;
 export const Email = styled.div``;

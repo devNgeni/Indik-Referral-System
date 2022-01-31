@@ -10,6 +10,7 @@ const endpoints = {
   reset: { url: `${BASE_URL}/users/reset`, method: "patch" },
   referred: { url: `${BASE_URL}/users/referred`, method: "get" },
   logout: { url: `${BASE_URL}/users/logout`, method: "get" },
+  profile: { url: `${BASE_URL}/users/profile`, method: "put"}
 };
 
 const makeRequest = async (url, method, body) => {

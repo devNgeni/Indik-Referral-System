@@ -179,7 +179,7 @@ export const updateUserProfile = (user_Id) => async (dispatch, getState) => {
     try {
         const {
             data
-        } = await Axios.put(endpoints.reset.url, user_Id, {
+        } = await Axios.put(endpoints.profile.url, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`
             }

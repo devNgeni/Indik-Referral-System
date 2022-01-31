@@ -10,14 +10,21 @@ import {
   WorkRich,
   TableIcon,
   TableSpan,
+  WorkSpan,
+  WorkImg
 } from "./WorkElement";
 import work from "../../images/Work/work.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import workicon from "../../images/Work/workicon.svg";
 
 function Work(props) {
+  const navigate = useNavigate();
+  const handleOnSubmit = () => {
+    navigate("/pix");
+  };
   return (
     <WorkContainer>
+      <TableIcon>
       <WorkHeader>How It Works</WorkHeader>
       <WorkBody>
         Hello {props.name}, you are one Step closer to making money by
@@ -26,47 +33,57 @@ function Work(props) {
       <WorkText>Just Follow this Steps</WorkText>
       <WorkDiv>
         <WorkSteps>
+          <WorkImg>
           <img src={work} alt="Icon" style={{ display: "grid" }} />
+          </WorkImg>
+          <WorkSpan>
           Purchase a Licence for $50
+          </WorkSpan>
         </WorkSteps>
         <WorkSteps>
+        <WorkImg>
           <img src={work} alt="Icon" />
+        </WorkImg>
+        <WorkSpan>
           Receive an Invitation code
+          </WorkSpan>
         </WorkSteps>
         <WorkSteps>
+        <WorkImg>
           <img src={work} alt="Icon" />
+          </WorkImg>
+          <WorkSpan>
           indik your friends and family
+          </WorkSpan>
         </WorkSteps>
         <WorkSteps>
+          <WorkImg>
           <img src={work} alt="Icon" />
+          </WorkImg>
+          <WorkSpan>
           Get $25 for each activated Invitation
+          </WorkSpan>
         </WorkSteps>
         <WorkSteps>
+          <WorkImg>
           <img src={work} alt="Icon" />
-          Indik as Many people as you want
+          </WorkImg>
+          <WorkSpan>
+          Invite as many People as You Can
+          </WorkSpan>
         </WorkSteps>
+
       </WorkDiv>
       <WorkRich>GET RICH!</WorkRich>
       <ServiceTwo>
-        <Link
-          to="/Pix"
-          style={{
-            display: "inline-flex",
-            backgroundColor: "rgb(0,175,240)",
-            borderRadius: "15px",
-            textAlignLast: "start",
-          }}
-        >
-          <TableIcon>
-            <img src={workicon} alt="icon" />
-          </TableIcon>
           <TableSpan>
-            <button>
+            <button onClick={handleOnSubmit}>
+              <img src={workicon} alt="icon" />
               Purchase License $50
             </button>
           </TableSpan>
-        </Link>
       </ServiceTwo>
+      </TableIcon>
     </WorkContainer>
   );
 }

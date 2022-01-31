@@ -98,7 +98,7 @@ function Verification(props) {
     if (userInfo) {
       navigate(redirect);
     }
-  }, [props.history, redirect, userInfo]);
+  }, [navigate.history, redirect, userInfo]);
 
   
 
