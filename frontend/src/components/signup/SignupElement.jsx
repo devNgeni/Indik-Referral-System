@@ -22,6 +22,7 @@ export const ContainerSub = styled.div`
   border-radius: 14px;
   justify-content: center;
   width: 500px;
+  backgrond-color: #fff;
 `;
 export const Header = styled.div`
   font-weight: bold;
@@ -77,6 +78,7 @@ export const Mobile = styled.div``;
 export const Registered = styled.div`
   display: inline-flex;
   justify-content: center;
+  width: 100%;
 `;
 export const RegisterText = styled.div`
   font-family: "Gill Sans", sans-serif;

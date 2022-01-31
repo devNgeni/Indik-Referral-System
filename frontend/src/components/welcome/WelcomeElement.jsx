@@ -74,7 +74,7 @@ export const TextBtn = styled.div`
 export const Registered = styled.div``;
 export const RegisterText = styled.div`
   font-family: "Gill Sans", sans-serif;
-  text-align: center;
+  text-align-last: center;
   justify-content: center;
   font-size: 1.5em;
 `;

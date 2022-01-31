@@ -86,6 +86,7 @@ const userSchema = Joi.object().keys({
         success: true,
         message: "Registration Success",
         referralCode: result.value.referralCode,
+        emailToken: result.value.emailToken
       });
     } catch (error) {
       console.error("signup-error", error);
@@ -157,8 +158,8 @@ exports.Login = async (req, res) => {
 // Activating Login Request
 exports.Activate = async (req, res) => {
     try {
-        const { email, code } = req.body;
-        if (!email || !code ) {
+        const { code } = req.body;
+        if ( !code ) {
             return res.json({
                 error: true,
                 status: 400,
@@ -166,7 +167,6 @@ exports.Activate = async (req, res) => {
             });
         }
         const user = await User.findOne({ 
-            email: email,
             emailToken: code,
             emailTokenExpiries: { $gt: Date.now() }, //check if the code is expired
         });
