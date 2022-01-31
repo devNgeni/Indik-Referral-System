@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 require("dotenv").config();
 const PORT = 4000;
 const authRoutes = require('./routes/users');
+const chargeRoutes  = require('./routes/pix-charge');
+
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -32,6 +34,9 @@ app.get("/ping", (req, res) => {
     });
 });
 app.use("/users", authRoutes);
+app.use("/pix", chargeRoutes);
+
+
 app.listen(PORT, () => {
     console.log("Server started listening on PORT : " + PORT);
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import bank from "../../images/pix-banco-central.svg"
+import bank from "../../images/Pix/pix-banco-central.svg"
 
 class Pix extends React.Component {
   // Constructor
@@ -14,7 +14,7 @@ class Pix extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/api/v1/createCharge")
+    fetch("http://localhost:4000/pix/createCharge")
       .then((res) => res.json())
       .then((json) => {
         this.setState({
