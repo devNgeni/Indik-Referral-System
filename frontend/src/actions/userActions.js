@@ -72,7 +72,6 @@ export const activate = (email, code) => async (dispatch) => {
     });
     try {
         const { data } = await Axios.post(endpoints.activate.url, {
-            email,
             code
         });
         dispatch({
@@ -146,7 +145,7 @@ export const detailsUser = (user_id) => async (dispatch, getState) => {
     try {
         const {
             data
-        } = await Axios.get(`endpoints.signin.url/${user_id}`, {
+        } = await Axios.get(endpoints.signin.url, {
             headers: {
                 Authorization: `Bearer ${userInfo?.token}`
             },

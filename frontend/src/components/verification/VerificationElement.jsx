@@ -41,11 +41,13 @@ margin: 20px;
 `;
 
 export const Verify = styled.div`
-display: flex;
+display: inline-flex;
 justify-content: center;
 padding: 20px;
 `;
-
+export const VerifyArea = styled.div`
+padding: 2px;
+`;
 export const Code = styled.div`
 font-family: "Gill Sans", sans-serif;
 font-size: 2em;

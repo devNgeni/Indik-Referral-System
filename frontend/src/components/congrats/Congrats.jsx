@@ -11,9 +11,17 @@ import {
 } from "./CongratsElement";
 import congratsbg from "../../images/congrats/congratsbg.svg";
 import congratsimg from "../../images/congrats/congratsimg.svg";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate  } from "react-router-dom";
+
 
 function Congrats() {
+  const userRegister = useSelector((state) => state.userRegister);
+  const { userInfo } = userRegister;
+  const navigate = useNavigate();
+ const handleOnSubmit = () => {
+    navigate("/work");
+    };
   return (
     <CongratsContainer>
       <CongratsDiv>
@@ -28,22 +36,9 @@ function Congrats() {
       <CongratsBody>You may now Purchase your License</CongratsBody>
       <CongratsTitle>and make Daily Profit</CongratsTitle>
       <ServiceTwo>
-        <Link to="/signup">
-          <button
-            className="obato"
-            style={{
-              color: "white",
-              backgroundColor: "#00aff0",
-              border: "none",
-              padding: "15px",
-              borderRadius: "15px",
-              width: "300px",
-              fontWeight: "bold",
-            }}
-          >
-            Get Started
+          <button onClick={handleOnSubmit}>
+            Lets GO
           </button>
-        </Link>
       </ServiceTwo>
     </CongratsContainer>
   );

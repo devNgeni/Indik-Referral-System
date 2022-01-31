@@ -1,11 +1,13 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Register } from "../../actions/userActions";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import { isEmail } from "validator";
 import CheckButton from "react-validation/build/button";
+import LoadingBox from '../loadingBox/LoadingBox';
+import MessageBox from '../messageBox/messageBox';
 import {
   Container,
   Header,
@@ -82,7 +84,7 @@ const vconfirmPassword = (value) => {
   }
 };
 
-const SignUp = () => {
+const SignUp = (props) => {
   const form = useRef();
   const checkBtn = useRef();
   const [name, setName] = useState("");
@@ -92,8 +94,12 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState("");
 
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get("redirect");
+  const redirect = redirectInUrl ? redirectInUrl : "/verification";
+  const navigate = useNavigate()
   const userRegister = useSelector((state) => state.userRegister);
-  // const { userInfo, loading, error } = userRegister;
+  const { userInfo, loading, error } = userRegister;
 
   const message = useSelector((state) => state.message);
   const dispatch = useDispatch();
@@ -139,129 +145,133 @@ const SignUp = () => {
         });
     }
   };
-    return (
-      <Container className="card card-container">
-        <ContainerSub>
-          <Header>Let's Create Your Account</Header>
-          <TextArea>
-            We will send a text to verify your mobile number and a link to your
-            email to verify your account. your email
-          </TextArea>
-          <Form
-            onSubmit={handleRegister}
-            ref={form}
-          >
-            {!successful && (
-              <DangerContainer className={Label}>
-                <NameText>
-                  <label htmlFor="name">Name</label>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Enter User Name"
-                    className="form-control"
-                    value={name}
-                    onChange={onChangeName}
-                    validations={[required, vusername]}
-                  ></Input>
-                </NameText>
-                <NameText>
-                  <label htmlFor="email">Email</label>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Enter a Valid Email"
-                    className="form-control"
-                    value={email}
-                    onChange={onChangeEmail}
-                    validations={[required, vemail]}
-                  />
-                </NameText>
-                <NameText>
-                  <label htmlFor="phone">Phone</label>
-                  <Input
-                    type="phone"
-                    name="phone"
-                    placeholder="Enter Phone Number"
-                    className="form-control"
-                    value={phone}
-                    onChange={onChangePhone}
-                    validations={[required, vphone]}
-                  />
-                </NameText>
-                <NameText>
-                  <label htmlFor="password">Password</label>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Enter Password"
-                    className="form-control"
-                    value={password}
-                    onChange={onChangePassword}
-                    validations={[required, vpassword]}
-                  />
-                </NameText>
-                <NameText>
-                  <label htmlFor="confirmPasswword">Confirm Password</label>
-                  <Input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Enter Confirm Password"
-                    className="form-control"
-                    value={confirmPassword}
-                    onChange={onChangeconfirmPassword}
-                    validations={[required, vconfirmPassword]}
-                  />
-                </NameText>
 
-                <TextBtn>
-                  <button type="submit">Create Account</button>
-                </TextBtn>
-              </DangerContainer>
-            )}
-            <DangerContainer className={Label} style={{
-                  display: "none"}}>
-              <CheckButton
-                ref={checkBtn}
-              />
-              {message && (
-                <div className="form-group">
-                  <div
-                    className={
-                      successful
-                        ? "alert alert-success"
-                        : "alert alert-danger"
-                    }
-                    role="alert"
-                  >
-                    {message}
-                  </div>
-                </div>
-              )}
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [props.history, redirect, userInfo]);
+  return (
+    <Container className="card card-container">
+      <ContainerSub>
+        <Header>Let's Create Your Account</Header>
+        <TextArea>
+          We will send a text to verify your mobile number and a link to your
+          email to verify your account. your email
+        </TextArea>
+        {loading && <LoadingBox></LoadingBox>}
+        {error && <MessageBox variant="danger">{error}</MessageBox>}
+        <Form onSubmit={handleRegister} ref={form}>
+          {!successful && (
+            <DangerContainer className={Label}>
+              <NameText>
+                <label htmlFor="name">Name</label>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Enter User Name"
+                  className="form-control"
+                  value={name}
+                  onChange={onChangeName}
+                  validations={[required, vusername]}
+                ></Input>
+              </NameText>
+              <NameText>
+                <label htmlFor="email">Email</label>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Enter a Valid Email"
+                  className="form-control"
+                  value={email}
+                  onChange={onChangeEmail}
+                  validations={[required, vemail]}
+                />
+              </NameText>
+              <NameText>
+                <label htmlFor="phone">Phone</label>
+                <Input
+                  type="phone"
+                  name="phone"
+                  placeholder="Enter Phone Number"
+                  className="form-control"
+                  value={phone}
+                  onChange={onChangePhone}
+                  validations={[required, vphone]}
+                />
+              </NameText>
+              <NameText>
+                <label htmlFor="password">Password</label>
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Enter Password"
+                  className="form-control"
+                  value={password}
+                  onChange={onChangePassword}
+                  validations={[required, vpassword]}
+                />
+              </NameText>
+              <NameText>
+                <label htmlFor="confirmPasswword">Confirm Password</label>
+                <Input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Enter Confirm Password"
+                  className="form-control"
+                  value={confirmPassword}
+                  onChange={onChangeconfirmPassword}
+                  validations={[required, vconfirmPassword]}
+                />
+              </NameText>
+
+              <TextBtn>
+                <button type="submit">Create Account</button>
+              </TextBtn>
             </DangerContainer>
-
-            <Registered>
-              <RegisterText>Already Registered?</RegisterText>
-              <RegisterLink>
-                <Link
-                  to="/Login"
-                  style={{
-                    color: "#00AFF0",
-                    textDecoration: "none",
-                    fontSize: "1em",
-                    fontWeight: "bold",
-                    paddingLeft: "15px",
-                  }}
+          )}
+          <DangerContainer
+            className={Label}
+            style={{
+              display: "none",
+            }}
+          >
+            <CheckButton ref={checkBtn} />
+            {message && (
+              <div className="form-group">
+                <div
+                  className={
+                    successful ? "alert alert-success" : "alert alert-danger"
+                  }
+                  role="alert"
                 >
-                  Sign in
-                </Link>
-              </RegisterLink>
-            </Registered>
-          </Form>
-        </ContainerSub>
-      </Container>
-    );
-  
+                  {message}
+                </div>
+              </div>
+            )}
+          </DangerContainer>
+
+          <Registered>
+            <RegisterText>Already Registered?</RegisterText>
+            <RegisterLink>
+              <Link
+                to="/Login"
+                style={{
+                  color: "#00AFF0",
+                  textDecoration: "none",
+                  fontSize: "1em",
+                  fontWeight: "bold",
+                  paddingLeft: "15px",
+                }}
+              >
+                Sign in
+              </Link>
+            </RegisterLink>
+          </Registered>
+        </Form>
+      </ContainerSub>
+    </Container>
+  );
 };
 
 export default SignUp;

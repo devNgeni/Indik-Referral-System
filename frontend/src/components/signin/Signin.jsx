@@ -36,7 +36,7 @@ function Signin() {
 
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
-  const redirect = redirectInUrl ? redirectInUrl : "/login";
+  const redirect = redirectInUrl ? redirectInUrl : "/dashboard";
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo, loading, error } = userSignin;
 
