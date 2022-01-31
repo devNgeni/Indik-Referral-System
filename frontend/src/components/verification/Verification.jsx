@@ -21,7 +21,7 @@ class Verification extends React.Component {
       otp3: "",
       otp4: "",
       otp5: "",
-      opt6: "",
+      
       disable: true,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -111,30 +111,20 @@ class Verification extends React.Component {
               maxLength="1"
               onKeyUp={(e) => this.inputfocus(e)}
             />
-
             <input
               name="otp5"
               type="text"
               autoComplete="off"
               className="otpInput"
-              value={this.state.otp5}
+              value={this.state.otp4}
               onChange={(e) => this.handleChange("otp5", e)}
               tabIndex="5"
               maxLength="1"
               onKeyUp={(e) => this.inputfocus(e)}
             />
 
-            <input
-              name="otp5"
-              type="text"
-              autoComplete="off"
-              className="otpInput"
-              value={this.state.otp6}
-              onChange={(e) => this.handleChange("otp5", e)}
-              tabIndex="5"
-              maxLength="1"
-              onKeyUp={(e) => this.inputfocus(e)}
-            />
+
+            
             </form>
           </Verify>
           
