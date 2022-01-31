@@ -1,3 +1,5 @@
+const {express} = require('express');
+
 const Joi = require('joi');
 require('dotenv').config();
 const {v4: uuid} = require('uuid');
@@ -6,7 +8,6 @@ const { customAlphabet: generate } = require("nanoid");
 const { generateJwt } = require('./helpers/generateJwt')
 const { sendEmail } = require('../users/helpers/mailers');
 const User = require("../users/user.model")
-
 const CHARACTER_SET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 const REFERRAL_CODE_LENGTH = 8;
 const referralCode = generate(CHARACTER_SET, REFERRAL_CODE_LENGTH);
@@ -294,6 +295,34 @@ exports.ResetPassword = async (req, res) => {
     }
 };
 
+exports.updatedProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+      if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        if (req.body.password) {
+          user.password = bcrypt.hashSync(req.body.password, 8);
+        }
+        const updatedUser = await user.save();
+        res.send({
+          _id: updatedUser._id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          isAdmin: updatedUser.isAdmin,
+          isSeller: user.isSeller,
+          token: generateToken(updatedUser),
+        });
+      }
+    } catch (error) {
+        console.error("reset-profile-error", error);
+        return res.status(500).json({
+            error: true,
+            message: error.message,
+        });
+    }
+}    
+  
 exports.ReferredAccounts = async (req, res) => {
     try {
         const { id, referralCode } = req.decode;

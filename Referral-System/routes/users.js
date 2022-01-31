@@ -34,5 +34,7 @@ router.get("/referred", validateToken, AuthController.ReferredAccounts);
 
 router.get("/logout", validateToken, AuthController.Logout);
 
+router.put("/profile", cleanBody, AuthController.updatedProfile);
+
 
 module.exports = router; 
