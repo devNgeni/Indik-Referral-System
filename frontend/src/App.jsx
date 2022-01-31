@@ -24,6 +24,8 @@ import Friend from './pages/Friend'
 import SideBar from './pages/SideBar';
 import PopOut from './pages/PopOut';
 import Policy from './pages/Policy';
+import ProfileScreen from './components/profileScreen/profile';
+
 // import popup from './pages/Pop';
 
 function App() {
@@ -39,7 +41,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/forgot" element={<UserForgot />} />
       <Route path="/verification" element={<UserVerification />} />
-      <Route path="/invite" element={<UserInvite />} />
+      <Route path="/invite" element={<UserInvite />} /> 
       <Route path="/congrats" element={<UserCongrats />} />
       <Route path="/failed" element={<UserFailed />} />
       <Route path="/error" element={<UserError />} />
@@ -54,6 +56,8 @@ function App() {
       <Route path="/SideBar" element={<SideBar />} />
       <Route path="/PopOut"  element={<PopOut />} />
       <Route path="/terms"  element={<Policy />} />
+      <Route path="/profileScreen"  element={<profile />} />
+
 
 
 
