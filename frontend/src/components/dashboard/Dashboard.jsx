@@ -1,121 +1,58 @@
-import React from "react";
-import {
-  DashboardContainer,
-  DashboardHeader,
-  DashboardTxt,
-  DashboardDiv,
-  DashboardColumn,
-  DashboardContent,
-  Dashboardparagraph,
-  DashboardSpan,
-  Dashboardimg,
-  Dashboardbg,
-  DashboardNav,
-  DashboardNum,
-  Dashboardcont,
-  DashboardRow,
-  DashboardCore,
-  DashboardCol,
-  DashboardTable,
-  DashboardTab
+import React from 'react'
+import "antd/dist/antd.css";
+import { Table } from 'antd';
+import QrCode from '../../images/dashbord/qr-code.png';
+import Share from '../../images/dashbord/share.png';
+import Copy from '../../images/dashbord/copy.png'
+import './DashboardStyles.css';
 
-} from "./DashboardElement";
-import indik from "../../images/indik/indik.svg";
-import hamberger from "../../images/header/hamberger.svg";
-import dex from "../../images/dashbord/dex.svg";
-import QR from "../../images/dashbord/QR.svg";
-import copy from "../../images/dashbord/copy.svg";
-import share from "../../images/dashbord/share.svg";
-import line from "../../images/dashbord/line.svg";
-import people from "../../images/dashbord/people.svg";
+export default function Dashboard() {
 
+	// Sample Data for the table
+	const dataSource = [
+		{ key: '1', username: 'Gourav', connection: 10, profit: 20},
+		{ key: '2', username: 'Kartik', connection: 20, profit: 20},
+		{ key: '3', username: 'Madhu', connection: 30, profit: 30},
+		{ key: '4', username: 'Karu', connection: 40, profit: 30 },
+		{ key: '5', username: 'Dinesh', connection: 50, profit: 40},
+	];
 
+	// Sample Columns data
+	const columns = [
+		{
+			title: 'Name ',
+			dataIndex: 'username',
+			key: 'username',
 
+		},
+		{
+			title: 'Connection Level',
+			dataIndex: 'connection',
+			key: 'connection',
+		},
+    {
+			title: 'Total Profit',
+			dataIndex: 'profit',
+			key: 'profit',
+		},
+	];
 
-function Dashboard(props) {
-  return (
-    <DashboardContainer>
-      <Dashboardbg>
-        <img src={hamberger} alt="icon" />
-        <img src={indik} alt="icon" />
-      </Dashboardbg>
-      <Dashboardimg>
-        <img src={dex} alt="icon" style={{ paddingTop: "100px" }} />
-      </Dashboardimg>
-      <Dashboardparagraph>
-        <DashboardHeader>
-          <DashboardSpan>
-            <img src={QR} alt="icon" />
-          </DashboardSpan>
-          <DashboardTxt>
-            Invite friends, get paid
-            <DashboardColumn>share this code {props.code}</DashboardColumn>
-          </DashboardTxt>
-        </DashboardHeader>
-        <DashboardContent>
-          <img src={copy} alt="icon" />
-          <img src={share} alt="" />
-        </DashboardContent>
-      </Dashboardparagraph>
-      <img src={line} alt="line" style={{width: '100%'}}/>
-      <DashboardNum>
-          <DashboardNav>
-          My Network
-        <DashboardColumn>{props.friends} friends joined under you</DashboardColumn>
-      </DashboardNav>
-      <Dashboardcont>
-          <img src={people} alt="icons" />
-      </Dashboardcont>
-      </DashboardNum>
-      <DashboardDiv>
-      <DashboardRow>
-      <DashboardCore>Name</DashboardCore>
-      <DashboardCore>Connection Level</DashboardCore>
-      <DashboardCore>Total Profit</DashboardCore>
-      </DashboardRow>
-      <DashboardCol>
-          <DashboardTable>{props.name}John Doe</DashboardTable>
-          <DashboardTable>{props.number}1</DashboardTable>
-          <DashboardTab>{props.profit}$25</DashboardTab>
-      </DashboardCol>
-      <DashboardCol>
-          <DashboardTable>{props.name}John Doe</DashboardTable>
-          <DashboardTable>{props.number}1</DashboardTable>
-          <DashboardTab>{props.profit}$25</DashboardTab>
-      </DashboardCol>
-      <DashboardCol>
-          <DashboardTable>{props.name}John Doe</DashboardTable>
-          <DashboardTable>{props.number}1</DashboardTable>
-          <DashboardTab>{props.profit}$25</DashboardTab>
-      </DashboardCol>
-      <DashboardCol>
-          <DashboardTable>{props.name}John Doe</DashboardTable>
-          <DashboardTable>{props.number}1</DashboardTable>
-          <DashboardTab>{props.profit}$25</DashboardTab>
-      </DashboardCol>
-      <DashboardCol>
-          <DashboardTable>{props.name}John Doe</DashboardTable>
-          <DashboardTable>{props.number}1</DashboardTable>
-          <DashboardTab>{props.profit}$25</DashboardTab>
-      </DashboardCol>
-      <DashboardCol>
-          <DashboardTable>{props.name}John Doe</DashboardTable>
-          <DashboardTable>{props.number}1</DashboardTable>
-          <DashboardTab>{props.profit}$25</DashboardTab>
-      </DashboardCol>
-      <DashboardCol>
-          <DashboardTable>{props.name}John Doe</DashboardTable>
-          <DashboardTable>{props.number}1</DashboardTable>
-          <DashboardTab>{props.profit}$25</DashboardTab>
-      </DashboardCol>
-      <DashboardCol>
-          <DashboardTable>{props.name}John Doe</DashboardTable>
-          <DashboardTable>{props.number}1</DashboardTable>
-          <DashboardTab>{props.profit}$25</DashboardTab>
-      </DashboardCol>
-      </DashboardDiv>
-    </DashboardContainer>
-  );
+	return (
+		<div style={{
+			display: 'block', width: 900, padding: 30
+		}}>
+
+      <div style ={{display: 'block', width: 700, padding: 30 }}>
+        <img src={QrCode} />
+      <h3>Invite friends,get paid</h3>
+      <h5>Share this code </h5>
+      <hr/>
+      <img src={Copy} />
+      <img src={Share} />
+      </div>
+
+			<h4>My Network</h4>
+			<Table dataSource={dataSource} columns={columns} />
+		</div>
+	);
 }
-
-export default Dashboard;
