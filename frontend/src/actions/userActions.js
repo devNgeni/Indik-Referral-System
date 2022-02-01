@@ -116,6 +116,7 @@ export const signin = (email, password) => async (dispatch) => {
             payload: data
         });
         localStorage.setItem('userInfo', JSON.stringify(data));
+        console.log(localStorage.getItem("userInfo"))
     } catch (error) {
         dispatch({
             type: USER_SIGNIN_FAIL,

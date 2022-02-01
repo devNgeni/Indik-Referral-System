@@ -14,13 +14,14 @@ import {
   WorkImg
 } from "./WorkElement";
 import work from "../../images/Work/work.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import workicon from "../../images/Work/workicon.svg";
 
 function Work(props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleOnSubmit = () => {
-    navigate("/pix");
+    // navigate("/pix");
+    return <Redirect to="/pix"/>
   };
   return (
     <WorkContainer>

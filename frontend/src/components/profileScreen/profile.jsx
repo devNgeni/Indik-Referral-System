@@ -1,18 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation} from 'react-router-dom'
+import axios from 'axios'
 import LoadingBox from '../loadingBox/LoadingBox';
 import MessageBox from '../messageBox/messageBox';
 import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants';
 import { detailsUser, updateUserProfile } from '../../actions/userActions';
+import { makeRequest, endpoints } from '../../api/endpoints';
 
 export default function ProfileScreen() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [currentUser, setCurrentUser] = useState(null);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [sellerName, setSellerName] = useState('');
     const [sellerLogo, setSellerLogo] = useState('');
     const [sellerDescription, setSellerDescription] = useState('');
+    const location  =  useLocation()
   
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -26,14 +31,29 @@ export default function ProfileScreen() {
     } = userUpdateProfile;
     const dispatch = useDispatch();
     useEffect(() => {
-      if (!user) {
-        dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        dispatch(detailsUser(userInfo._id));
-      } else {
-        setName(user.name);
-        setEmail(user.email);
+      getData()
+      return {
+        currentUser
       }
-    }, [dispatch, userInfo._id, user]);
+    }, [location]);
+
+
+
+    const getData  = async() =>{
+      try {
+        const user  =  JSON.parse(localStorage.getItem("userInfo")).user
+        // console.log(respo)
+        setCurrentUser(user)
+        // console.log(user)
+        setName(currentUser?.name)
+        setEmail(currentUser?.email)
+        // const users  = await makeRequest(endpoints.referred.url, "get", {});
+  
+        // console.log(users)
+      } catch (error) {
+        
+      }
+    }
     const submitHandler = (e) => {
       e.preventDefault();
       // dispatch update profile
@@ -56,12 +76,12 @@ export default function ProfileScreen() {
           <div>
             <h1>User Profile</h1>
           </div>
-          {loading ? (
+          {/* {!currentUser ? (
             <LoadingBox></LoadingBox>
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
-          ) : (
-            <>
+          ) : ( */}
+            {<>
               {loadingUpdate && <LoadingBox></LoadingBox>}
               {errorUpdate && (
                 <MessageBox variant="danger">{errorUpdate}</MessageBox>
@@ -116,7 +136,7 @@ export default function ProfileScreen() {
                 </button>
               </div>
             </>
-          )}
+          }
         </form>
       </div>
     );

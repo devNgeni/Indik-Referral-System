@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   TableContainer,
   TableHeader,
@@ -43,6 +43,14 @@ import { lightBlue } from "@mui/material/colors";
 import workicon from "../../images/Work/workicon.svg";
 
 function Table(props) {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("userInfo"));
+
+    setUser(currentUser.user);
+  }, []);
+
   return (
     <TableContainer>
       <Tablebg>
@@ -51,9 +59,9 @@ function Table(props) {
       </Tablebg>
       <Tableimg>
         <Profile>
-          <TableDash>{props.name}John Doe</TableDash>
-          <TableWord>{props.number}+55 9512 3456</TableWord>
-          <TableWord>{props.email}johnDoe@gmail.com</TableWord>
+          <TableDash>{user.name}</TableDash>
+          <TableWord>+{user.phone}</TableWord>
+          <TableWord>{user.email}</TableWord>
           <TableSet>
             <TableOne>
               <img src={dex} alt="icon" />
@@ -64,7 +72,7 @@ function Table(props) {
         </Profile>
         <ProfileImage>
           <Avatar
-            alt="John Doe"
+            alt={user.name}
             src="/static/images/avatar/1.jpg"
             sx={{ bgcolor: lightBlue[500], width: 70, height: 70 }}
           />
@@ -97,9 +105,7 @@ function Table(props) {
               <img src={workicon} alt="icon" />
             </TableIcon>
             <TableSpan>
-              <button>
-                Purchase License $50
-              </button>
+              <button>Purchase License $50</button>
             </TableSpan>
           </Link>
         </ServiceTwo>

@@ -31,9 +31,15 @@ function Pop(props) {
                 <img src={sidebar} alt="icon" width="40" onClick={() => setSidebarIsOpen(true)}/>
             </PopButton>
             <Profile>
+<<<<<<< HEAD
         <PopDash>{userInfo.name}</PopDash>
         <PopWord>{userInfo.number}</PopWord>
         <PopWord>{userInfo.email}</PopWord>
+=======
+        <PopDash>{props.name}</PopDash>
+        <PopWord>{props.number}</PopWord>
+        <PopWord>{props.email}</PopWord>
+>>>>>>> 5ffd276b73501fcd62a628038b14e6699a44bd33
         </Profile>
             <PopIt><img src={line} alt="icon" width="100%" /></PopIt>
             <PopEven><Link to="/dashboard" style={{textDecoration: 'none', color: '#3A5168'}}>Dashboard</Link></PopEven>

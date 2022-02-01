@@ -10,12 +10,19 @@ const endpoints = {
   reset: { url: `${BASE_URL}/users/reset`, method: "patch" },
   referred: { url: `${BASE_URL}/users/referred`, method: "get" },
   logout: { url: `${BASE_URL}/users/logout`, method: "get" },
-  profile: { url: `${BASE_URL}/users/profile`, method: "put"}
+  profile: { url: `${BASE_URL}/users/profile`, method: "put"},
+  currentUser: { url: `${BASE_URL}/users/current-user`, method: "get"},
 };
 
 const makeRequest = async (url, method, body) => {
+  const tokenUser  =  JSON.parse(localStorage.getItem("userInfo"))
+
   try {
-    const response = await axios[method](url, "post", body);
+    const response = await axios[method](url, method, body, {
+      headers: {
+        'Authorization': `Bearer ${tokenUser.accessToken}`
+      }
+    });
     console.log(response);
     return response;
   } catch (err) {

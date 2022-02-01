@@ -12,15 +12,15 @@ import {
 import congratsbg from "../../images/congrats/congratsbg.svg";
 import congratsimg from "../../images/congrats/congratsimg.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, Redirect  } from "react-router-dom";
 
 
 function Congrats() {
   const userRegister = useSelector((state) => state.userRegister);
   const { userInfo } = userRegister;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
  const handleOnSubmit = () => {
-    navigate("/work");
+    return <Redirect to="/work" />
     };
   return (
     <CongratsContainer>

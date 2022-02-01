@@ -11,7 +11,7 @@ import {
   VerifyButton,
   VerifyArea,
 } from "./VerificationElement";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, Redirect, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { activate } from "../../actions/userActions";
 
@@ -78,7 +78,7 @@ function Verification(props) {
   // Handle Submit Verification Code
   const { search } = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/congrats";
 
@@ -96,9 +96,10 @@ function Verification(props) {
   };
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect);
+      // navigate(redirect);
+      return <Redirect to={redirect} />
     }
-  }, [navigate.history, redirect, userInfo]);
+  }, [redirect, userInfo]);
 
   
 

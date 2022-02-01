@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, Redirect, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Register } from "../../actions/userActions";
 import Form from "react-validation/build/form";
@@ -97,7 +97,6 @@ const SignUp = (props) => {
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/verification";
-  const navigate = useNavigate()
   const userRegister = useSelector((state) => state.userRegister);
   const { userInfo, loading, error } = userRegister;
 
@@ -148,7 +147,7 @@ const SignUp = (props) => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect);
+      return <Redirect to={redirect} />
     }
   }, [props.history, redirect, userInfo]);
   return (
