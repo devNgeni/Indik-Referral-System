@@ -24,9 +24,6 @@ export default function Dashboard() {
 				}
 			});
 			console.log(respo)
-			// const users  = await makeRequest(endpoints.referred.url, "get", {});
-
-			// console.log(users)
 		} catch (error) {
 			
 		}

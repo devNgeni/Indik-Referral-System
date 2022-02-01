@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation} from 'react-router-dom'
 import axios from 'axios'
 import LoadingBox from '../loadingBox/LoadingBox';
 import MessageBox from '../messageBox/messageBox';
@@ -16,6 +17,7 @@ export default function ProfileScreen() {
     const [sellerName, setSellerName] = useState('');
     const [sellerLogo, setSellerLogo] = useState('');
     const [sellerDescription, setSellerDescription] = useState('');
+    const location  =  useLocation()
   
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -30,28 +32,21 @@ export default function ProfileScreen() {
     const dispatch = useDispatch();
     useEffect(() => {
       getData()
-    }, []);
+      return {
+        currentUser
+      }
+    }, [location]);
 
 
 
     const getData  = async() =>{
       try {
-        const tokenUser  =  JSON.parse(localStorage.getItem("userInfo"))
-        console.log(tokenUser.accessToken)
-        console.log({
-          'Authorization': `Bearer ${tokenUser.accessToken}`
-          })
-        const {data}  = await axios.get(endpoints.currentUser.url, {
-          headers: {
-            'Authorization': `Bearer ${tokenUser.accessToken}`
-          }
-        });
+        const user  =  JSON.parse(localStorage.getItem("userInfo")).user
         // console.log(respo)
-        setCurrentUser(data.user)
-        console.log(currentUser)
-
-        setName(currentUser.name)
-        setEmail(currentUser.email)
+        setCurrentUser(user)
+        // console.log(user)
+        setName(currentUser?.name)
+        setEmail(currentUser?.email)
         // const users  = await makeRequest(endpoints.referred.url, "get", {});
   
         // console.log(users)
@@ -100,7 +95,6 @@ export default function ProfileScreen() {
                 <label htmlFor="name">Name</label>
                 <input
                   id="name"
-                  value={currentUser.name}
                   type="text"
                   placeholder="Enter name"
                   value={name}

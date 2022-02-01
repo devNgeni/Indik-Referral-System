@@ -152,11 +152,24 @@ exports.Login = async (req, res) => {
         user.accessToken = token;
 
         await user.save();
+
+        const userResponse = {
+            name: user.name,
+            email: user.email,
+            phone: user.phone,
+            id: user.user_id,
+            _id: user._id,
+            active:  user.active,
+            createdAt:  user.createdAt,
+            updatedAt:  user.updatedAt,
+            referralCode:  user.referralCode
+          };
         // success
         return res.send({
             success: true,
             message: "User logged in successfully🔥🔥🔥",
-            accessToken: token, 
+            accessToken: token,
+            user:  userResponse 
         });
     } catch (err) {
         console.error("Login Error", err);

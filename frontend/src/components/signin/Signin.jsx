@@ -38,8 +38,8 @@ function Signin() {
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/dashboard";
   const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo, loading, error } = userSignin;
-
+  const { loading, error } = userSignin;
+  const userInfo =  JSON.parse(localStorage.getItem("userInfo"))
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ function Signin() {
     dispatch(signin(email, password));
 
     console.log(userSignin)
-    window.location.reload()
+    // window.location.reload()
   };
   useEffect(() => {
     if (userInfo) {
