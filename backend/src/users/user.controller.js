@@ -20,6 +20,14 @@ const userSchema = Joi.object().keys({
     confirmPassword: Joi.string().valid(Joi.ref("password")),
   });
 
+  /**
+   * 914704
+   * O4uq7DhN
+   * @param {*} req 
+   * @param {*} res 
+   * @returns 
+   */
+
   exports.Signup = async (req, res) => {
     try {
       const result = userSchema.validate(req.body);
@@ -130,8 +138,11 @@ exports.Login = async (req, res) => {
                 message: "Invalid password❗❗"
             });
         }
+
+
         // Generating Access Token
         const { error, token } = await generateJwt(user.email, user.user_id);
+
         if (error) {
             return res.status(500).json({
                 error: true,
@@ -325,7 +336,9 @@ exports.updatedProfile = async (req, res) => {
   
 exports.ReferredAccounts = async (req, res) => {
     try {
-        const { id, referralCode } = req.decode;
+
+        // console.log(req.user)
+        const { id, referralCode } = req.decoded;
 
         const referredAccounts = await User.find(
             { referrer: referralCode },
@@ -363,3 +376,13 @@ exports.Logout = async (req, res) => {
         });
     }
 };
+
+
+
+exports.currentUser =  async (req, res) => {
+        try {
+        return res.status(200).json({user: req.user})
+        } catch (error) {
+            console.log(error)
+        }
+}

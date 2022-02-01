@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios'
 import LoadingBox from '../loadingBox/LoadingBox';
 import MessageBox from '../messageBox/messageBox';
 import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants';
 import { detailsUser, updateUserProfile } from '../../actions/userActions';
+import { makeRequest, endpoints } from '../../api/endpoints';
 
 export default function ProfileScreen() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [currentUser, setCurrentUser] = useState(null);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [sellerName, setSellerName] = useState('');
@@ -26,14 +29,36 @@ export default function ProfileScreen() {
     } = userUpdateProfile;
     const dispatch = useDispatch();
     useEffect(() => {
-      if (!user) {
-        dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        dispatch(detailsUser(userInfo._id));
-      } else {
-        setName(user.name);
-        setEmail(user.email);
+      getData()
+    }, []);
+
+
+
+    const getData  = async() =>{
+      try {
+        const tokenUser  =  JSON.parse(localStorage.getItem("userInfo"))
+        console.log(tokenUser.accessToken)
+        console.log({
+          'Authorization': `Bearer ${tokenUser.accessToken}`
+          })
+        const {data}  = await axios.get(endpoints.currentUser.url, {
+          headers: {
+            'Authorization': `Bearer ${tokenUser.accessToken}`
+          }
+        });
+        // console.log(respo)
+        setCurrentUser(data.user)
+        console.log(currentUser)
+
+        setName(currentUser.name)
+        setEmail(currentUser.email)
+        // const users  = await makeRequest(endpoints.referred.url, "get", {});
+  
+        // console.log(users)
+      } catch (error) {
+        
       }
-    }, [dispatch, userInfo._id, user]);
+    }
     const submitHandler = (e) => {
       e.preventDefault();
       // dispatch update profile
@@ -56,12 +81,12 @@ export default function ProfileScreen() {
           <div>
             <h1>User Profile</h1>
           </div>
-          {loading ? (
+          {/* {!currentUser ? (
             <LoadingBox></LoadingBox>
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
-          ) : (
-            <>
+          ) : ( */}
+            {<>
               {loadingUpdate && <LoadingBox></LoadingBox>}
               {errorUpdate && (
                 <MessageBox variant="danger">{errorUpdate}</MessageBox>
@@ -75,6 +100,7 @@ export default function ProfileScreen() {
                 <label htmlFor="name">Name</label>
                 <input
                   id="name"
+                  value={currentUser.name}
                   type="text"
                   placeholder="Enter name"
                   value={name}
@@ -116,7 +142,7 @@ export default function ProfileScreen() {
                 </button>
               </div>
             </>
-          )}
+          }
         </form>
       </div>
     );

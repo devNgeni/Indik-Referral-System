@@ -13,12 +13,14 @@ async function validateToken(req, res, next) {
     });
 
   const token = req.headers.authorization.split(" ")[1]; // Bearer <token>
-  const options = {
-    expiresIn: "1h",
-  };
+  console.log("Token: ", token)
+  
+  result = jwt.verify(token, process.env.JWT_SECRET);
+
+
   try {
     let user = await User.findOne({
-      accessToken: token,
+      user_id: result.id,
     });
     // console.log(token);
     if (!user) {
@@ -29,8 +31,7 @@ async function validateToken(req, res, next) {
       return res.status(403).json(result);
     }
 
-    result = jwt.verify(token, process.env.JWT_SECRET, options);
-
+   
     if (!user.user_id === result.id) {
       result = {
         error: true,
@@ -43,6 +44,8 @@ async function validateToken(req, res, next) {
     result["referralCode"] = user.referralCode;
 
     req.decoded = result;
+
+
     next();
   } catch (err) {
     // console.log(err);

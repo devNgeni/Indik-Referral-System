@@ -20,7 +20,7 @@ import {
 import hidePwdImg from "../../images/Show/hidePwdImg.svg";
 import showPwdImg from "../../images/Show/hidePwdImg.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, Redirect, useLocation } from "react-router-dom";
 import { signin } from "../../actions/userActions";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -30,7 +30,7 @@ function Signin() {
   const [pwd, setPwd] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -43,13 +43,17 @@ function Signin() {
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(signin(email, password))
     dispatch(signin(email, password));
+
+    console.log(userSignin)
+    window.location.reload()
   };
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect);
+      return <Redirect to={redirect} />
     }
-  }, [navigate, redirect, userInfo]);
+  }, [redirect, userInfo]);
 
   return (
     <Container className="card card-container">

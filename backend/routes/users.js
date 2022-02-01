@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const requireAuth  = require("./../middlewares/require-auth")
 const { validateToken } = require("../middlewares/validateToken");
 const cleanBody = require('../middlewares/cleanbody');
 const AuthController = require('../src/users/user.controller');
@@ -30,11 +31,12 @@ router.patch("/forgot", cleanBody, AuthController.ForgotPassword);
 
 router.patch("/reset", cleanBody, AuthController.ResetPassword);
 
-router.get("/referred", validateToken, AuthController.ReferredAccounts);
+router.get("/referred", validateToken, requireAuth, AuthController.ReferredAccounts);
 
-router.get("/logout", validateToken, AuthController.Logout);
+router.get("/logout", validateToken, requireAuth,  AuthController.Logout);
+router.get("/current-user", validateToken, requireAuth, AuthController.currentUser);
 
-router.put("/profile", cleanBody, AuthController.updatedProfile);
+router.put("/profile", cleanBody, requireAuth, AuthController.updatedProfile);
 
 
 module.exports = router; 

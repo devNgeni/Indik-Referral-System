@@ -12,12 +12,11 @@ import {
 } from "./WelcomeElement";
 import circle from "../../images/WelBody/circle.svg";
 import welcomeicon from "../../images/WelBody/welcomeico.svg";
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, Redirect, NavLink  } from "react-router-dom";
 
 function Welcome() {
-  const navigate = useNavigate();
  const handleOnSubmit = () => {
-    navigate("/signup");
+    return <Redirect to="/signup"/>
     };
 
   return (
@@ -49,6 +48,7 @@ function Welcome() {
               fontSize: "1em",
               fontWeight: "bold",
               paddingLeft: "10px",
+              cursor:"pointer"
             }}
           >
             Sign in
