@@ -3,7 +3,6 @@ import {
   Container,
   Header,
   Label,
-  Name,
   Email,
   NameText,
   TextArea,
@@ -15,7 +14,6 @@ import {
   LoadingBox,
   MessageBox,
   ContainerSub
-
 } from "./SigninElement";
 import hidePwdImg from "../../images/Show/hidePwdImg.svg";
 import showPwdImg from "../../images/Show/hidePwdImg.svg";
@@ -96,9 +94,7 @@ function Signin() {
             />
           </TextImage>
         </Email>
-     
-
-      <TextArea>
+        <TextArea>
         <Link
           to="/forgot"
           style={{
@@ -108,8 +104,7 @@ function Signin() {
             padding: "10px",
             transition: "all ease-in-out 0.5s",
             transform: "scale(1.4)",
-          }}
-        >
+          }}>
           Forgort password
         </Link>
       </TextArea>

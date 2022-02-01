@@ -29,7 +29,6 @@ import ProfileScreen from './components/profileScreen/profile';
 // import popup from './pages/Pop';
 
 function App() {
- 
 
   return (
       <Routes>
@@ -56,11 +55,7 @@ function App() {
       <Route path="/SideBar" element={<SideBar />} />
       <Route path="/PopOut"  element={<PopOut />} />
       <Route path="/terms"  element={<Policy />} />
-      <Route path="/profileScreen"  element={<profile />} />
-
-
-
-
+      <Route path="/profileScreen"  element={<ProfileScreen />} />
       {/* <Route path="/popup" element={popup} /> */}
       </Routes>
   );

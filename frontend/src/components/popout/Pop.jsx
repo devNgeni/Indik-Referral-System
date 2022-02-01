@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   PopContainer,
   PopDash,
@@ -14,17 +14,26 @@ import {
 import line from "../../images/dashbord/line.svg";
 import sidebar from "../../images/sidebar/sidebar.svg";
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { signout } from '../../actions/userActions'
 
 function Pop(props) {
+    const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+    const userRegister = useSelector((state) => state.userRegister);
+  const { userInfo } = userRegister;
+  const dispatch = useDispatch();
+  const signoutHandler = () => {
+    dispatch(signout());
+  };
     return (
         <PopContainer>
             <PopButton>
-                <img src={sidebar} alt="icon" width="40"/>
+                <img src={sidebar} alt="icon" width="40" onClick={() => setSidebarIsOpen(true)}/>
             </PopButton>
             <Profile>
-        <PopDash>{props.name}John Doe</PopDash>
-        <PopWord>{props.number}+55 9512 3456</PopWord>
-        <PopWord>{props.email}johnDoe@gmail.com</PopWord>
+        <PopDash>{userInfo.name}</PopDash>
+        <PopWord>{userInfo.number}</PopWord>
+        <PopWord>{userInfo.email}</PopWord>
         </Profile>
             <PopIt><img src={line} alt="icon" width="100%" /></PopIt>
             <PopEven><Link to="/dashboard" style={{textDecoration: 'none', color: '#3A5168'}}>Dashboard</Link></PopEven>

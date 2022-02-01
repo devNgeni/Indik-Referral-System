@@ -7,7 +7,8 @@ import {
   ContactBody,
   ContactDiv,
   Contactbg,
-  ContactCont
+  ContactCont,
+  ContactButton,
 } from "./ContactElement";
 import contactbg from "../../images/contact/contactbg.svg";
 import contactimg from "../../images/contact/contactimg.svg";
@@ -29,94 +30,57 @@ function Contact() {
         </Contactimg>
       </ContactDiv>
       <ContactCont>
-      <ContactBody>
-        <button
-          type="button"
-          style={{
-            border: "1px #3A5168",
-            borderRadius: "15px",
-            backgroundColor: "rgb(208 240 251)",
-            fontWeight: "900",
-            fontSize: "20px",
-            width: "450px",
-            padding: "20px",
-            fontFamily: '"Gill Sans", sans-serif',
-          }}
-        >
-          +55 8889 5556
-        </button>
-        <ContactText>
-          <img
-            src={phoneico}
-            alt="ico"
-            style={{
-              backgroundColor: "white",
-              borderRadius: "50%",
-              padding: "10px",
-            }}
-          />
-        </ContactText>
-      </ContactBody>
-      <ContactBody>
-        <ExternalLink href="mailto:support@indik.io">
-          <button
-          type="button"
-          style={{
-            border: "1px #3A5168",
-            borderRadius: "15px",
-            backgroundColor: "rgb(208 240 251)",
-            fontWeight: "900",
-            fontSize: "20px",
-            width: "450px",
-            padding: "20px",
-            fontFamily: '"Gill Sans", sans-serif',
-          }}
-        >
-          support@indik.io
-        </button>
-        </ExternalLink>
-        
-        <ContactText>
-          <img
-            src={email}
-            alt="ico"
-            style={{
-              backgroundColor: "white",
-              borderRadius: "50%",
-              padding: "10px",
-            }}
-          />
-        </ContactText>
-      </ContactBody>
-      <ContactBody>
-        <button
-          type="button"
-          style={{
-            border: "1px #3A5168",
-            borderRadius: "15px",
-            backgroundColor: "rgb(208 240 251)",
-            fontWeight: "900",
-            fontSize: "20px",
-            width: "450px",
-            padding: "20px",
-            fontFamily: '"Gill Sans", sans-serif',
-          }}
-        >
-          Cruzeiro, São Paulo
-        </button>
-        <ContactText>
-          <img
-            src={location}
-            alt="ico"
-            style={{
-              backgroundColor: "white",
-              borderRadius: "50%",
-              padding: "10px",
-              fontFamily: '"Gill Sans", sans-serif',
-            }}
-          />
-        </ContactText>
-      </ContactBody>
+        <ContactBody>
+          <ContactText>
+            <img
+              src={phoneico}
+              alt="ico"
+              style={{
+                backgroundColor: "white",
+                borderRadius: "50%",
+                padding: "10px",
+              }}
+            />
+          </ContactText>
+          <ContactButton>
+            <button type="button">+55 8889 5556</button>
+          </ContactButton>
+        </ContactBody>
+        <ContactBody>
+          <ContactText>
+            <img
+              src={email}
+              alt="ico"
+              style={{
+                backgroundColor: "white",
+                borderRadius: "50%",
+                padding: "10px",
+              }}
+            />
+          </ContactText>
+          <ContactButton>
+            <ExternalLink href="mailto:support@indik.io">
+              <button type="button">support@indik.io</button>
+            </ExternalLink>
+          </ContactButton>
+        </ContactBody>
+        <ContactBody>
+          <ContactText>
+            <img
+              src={location}
+              alt="ico"
+              style={{
+                backgroundColor: "white",
+                borderRadius: "50%",
+                padding: "10px",
+                fontFamily: '"Gill Sans", sans-serif',
+              }}
+            />
+          </ContactText>
+          <ContactButton>
+          <button type="button">Cruzeiro, São Paulo</button>
+          </ContactButton>
+        </ContactBody>
       </ContactCont>
     </ContactContainer>
   );

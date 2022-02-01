@@ -7,7 +7,7 @@ import Copy from '../../images/dashbord/copy.png'
 import './DashboardStyles.css';
 
 export default function Dashboard() {
-
+	
 	// Sample Data for the table
 	const dataSource = [
 		{ key: '1', username: 'Gourav', connection: 10, profit: 20},

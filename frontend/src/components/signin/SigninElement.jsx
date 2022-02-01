@@ -13,7 +13,7 @@ export const Container = styled.div`
   }
 `;
 export const ContainerSub = styled.div`
-  position: relative;
+
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -69,6 +69,8 @@ export const Registered = styled.div`
   padding: 10px;
   display: inline-flex;
   justify-content: center;
+  text-align-last: center;
+  width: 100%;
 `;
 export const RegisterText = styled.div`
   font-family: "Gill Sans", sans-serif;

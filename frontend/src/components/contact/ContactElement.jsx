@@ -33,32 +33,18 @@ export const Contactimg = styled.div`
   z-index: -1;
 `;
 export const ContactText = styled.div`
-  position: relative;
-  top: -54px;
-  left: -160px;
-  boder-radius: 50%;
-  height: 10px;
+
 `;
 export const ContactBody = styled.div`
-  height: 80px;
-  padding-left: -20px;
+  width: 100%;
+  diplay: inline-flex;
+  justify-content: center;
+  text-align-last: center;
   font-family: "Gill Sans", sans-serif;
-  button:hover::before {
-    opacity: 0 ;
-    transform: scale(0.5,0.5);
-  }
-  button:hover {
-    color: #00aff0;
-    transition: all ease-in-out 0.5s;
-    transform: scale(1.2);
-  }
-  button:hover::after {
-    opacity: 1;
-    transform: scale(1,1);
-  }
+
   @media screen and (max-width: 960px) {
     align-content: center;
-    }
+  }
 `;
 export const ContactDiv = styled.div`
   height: 300px;
@@ -74,5 +60,8 @@ export const Contactico = styled.div`
   z-index: -1;
 `;
 export const ContactCont = styled.div`
-  margin: -4px;
+display: grid;
+justify-content: center;
 `;
+
+export const ContactButton = styled.div``;
