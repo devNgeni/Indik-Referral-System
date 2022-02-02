@@ -28,7 +28,7 @@ const required = (value) => {
   if (!value) {
     return (
       <AlertText className="alert alert-danger" role="alert">
-        !This field is Required
+        This field is Required!
       </AlertText>
     );
   }
@@ -148,7 +148,10 @@ const SignUp = (props) => {
   };
 
   useEffect(() => {
-    if (userInfo) {
+    if (error) {
+      routerHistory.push("/signup")
+ 
+  } else if (userInfo) {
       return routerHistory.push("/verification")
     }
   }, [props.history, routerHistory, userInfo]);

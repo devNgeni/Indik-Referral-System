@@ -108,6 +108,8 @@ exports.Signup = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Registration Success",
+      name: result.value.name,
+      phone: result.value.phone,
       referralCode: result.value.referralCode,
       emailToken: result.value.emailToken,
     });

@@ -18,7 +18,7 @@ export const Container = styled.div`
 export const ContainerSub = styled.div`
   margin: 2em;
   width: 450px;
-  height: 65vh;
+  height: 67vh;
   box-shadow: 5px 10px 18px #888888;
   border-radius: 16px;
   justify-content: center;
@@ -36,7 +36,7 @@ export const Header = styled.div`
 export const TextArea = styled.div`
   font-family: "Gill Sans", sans-serif;
   text-align-last: last;
-  font-size: 2rem;
+  font-size: 1.6rem;
   padding-bottom: 40px;
   padding-left: 20px;
   width: 100%;
@@ -45,8 +45,9 @@ export const TextArea = styled.div`
 export const Counter = styled.div`
   font-family: "Gill Sans", sans-serif;
   text-align-last: center;
-  font-size: 2rem;
-  margin: 20px;
+  font-size: 1.6rem;
+  margin: 2px;
+  color: #00bbff;
 `;
 
 export const Verify = styled.div`
@@ -70,7 +71,7 @@ export const VerifyButton = styled.div`
   colort: #fff;
 `;
 export const Registered = styled.div`
-  padding: 40px;
+  padding: 20px;
   text-align-last: center;
   font-size: 1.5em;
 `;

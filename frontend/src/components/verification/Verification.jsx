@@ -82,9 +82,8 @@ function Verification(props) {
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/congrats";
 
-  const userRegister = useSelector((state) => state.userRegister);
-  const { userInfo } = userRegister;
-
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(userInfo);
   const handleSubmit = (e) => {
     e.preventDefault();
     let code = value
@@ -113,7 +112,7 @@ function Verification(props) {
         sent.
       </TextArea>
       {userInfo ? (
-        <Counter>Enter Code Sent to{userInfo.phone}</Counter>
+        <Counter>Enter Code Sent to<span>+{userInfo.phone}</span></Counter>
       ) : (
         <Link to="/signup"></Link>
       )}

@@ -12,7 +12,7 @@ router.post("/signup", cleanBody, AuthController.Signup, (request, response) => 
         email: request.body.email,
         phone: request.body.phone,
         password: bcrypt.hashSync(request.body.password, 8),
-        token: generateToken(signUpUser),
+        token: generateToken(signedUpuser),
     });
     signedUpuser.save()
     .then(data => {
@@ -34,7 +34,6 @@ router.patch("/reset", cleanBody, AuthController.ResetPassword);
 router.get("/referred", validateToken, requireAuth, AuthController.ReferredAccounts);
 
 router.get("/logout", validateToken, requireAuth,  AuthController.Logout);
-router.get("/current-user", validateToken, requireAuth, AuthController.currentUser);
 
 router.put("/profile", cleanBody, requireAuth, AuthController.updatedProfile);
 

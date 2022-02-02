@@ -14,9 +14,6 @@ export default function ProfileScreen() {
     const [currentUser, setCurrentUser] = useState(null);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [sellerName, setSellerName] = useState('');
-    const [sellerLogo, setSellerLogo] = useState('');
-    const [sellerDescription, setSellerDescription] = useState('');
     const location  =  useLocation()
   
     const userSignin = useSelector((state) => state.userSignin);
@@ -35,7 +32,7 @@ export default function ProfileScreen() {
       return {
         currentUser
       }
-    }, [location]);
+    }, [location, userInfo]);
 
 
 
