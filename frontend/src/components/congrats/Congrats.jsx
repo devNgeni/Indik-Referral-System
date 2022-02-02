@@ -11,16 +11,18 @@ import {
 } from "./CongratsElement";
 import congratsbg from "../../images/congrats/congratsbg.svg";
 import congratsimg from "../../images/congrats/congratsimg.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect  } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory  } from "react-router-dom";
 
 
 function Congrats() {
   const userRegister = useSelector((state) => state.userRegister);
   const { userInfo } = userRegister;
+
+  const routerHistory = useHistory();
   // const navigate = useNavigate();
  const handleOnSubmit = () => {
-    return <Redirect to="/work" />
+    return routerHistory.push("/dashboard")
     };
   return (
     <CongratsContainer>

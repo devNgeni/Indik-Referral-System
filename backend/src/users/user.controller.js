@@ -1,5 +1,5 @@
 const { express } = require("express");
-const axios = require("axios")
+const axios = require("axios");
 
 const Joi = require("joi");
 require("dotenv").config();
@@ -35,7 +35,7 @@ const sendSMS = async (phone) => {
     expire: 120,
   });
 
-//   console.log(data);
+  //   console.log(data);
   return { success: true, message: data };
 };
 
@@ -350,7 +350,7 @@ exports.updatedProfile = async (req, res) => {
 
 exports.ReferredAccounts = async (req, res) => {
   try {
-    const { id, referralCode } = req.decode;
+    const { referralCode } = req.decoded;
 
     const referredAccounts = await User.find(
       { referrer: referralCode },
@@ -363,7 +363,7 @@ exports.ReferredAccounts = async (req, res) => {
     });
   } catch (error) {
     console.error("fetch-referred-error", error);
-    return res.stat(500).json({
+    return res.status(500).json({
       error: true,
       message: error.message,
     });

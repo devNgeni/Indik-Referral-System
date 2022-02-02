@@ -10,9 +10,9 @@ import {
   RegisterText,
   VerifyButton,
   VerifyArea,
-  ContainerSub
+  ContainerSub,
 } from "./VerificationElement";
-import { Link, Redirect, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { activate } from "../../actions/userActions";
 
@@ -59,7 +59,7 @@ function Verification(props) {
     const opt6 = e.target.value;
     setOpt6(opt6);
   };
-  
+
   const inputfocus = (elmnt) => {
     if (elmnt.key === "Delete" || elmnt.key === "Backspace") {
       const next = elmnt.target.tabIndex - 2;
@@ -82,149 +82,160 @@ function Verification(props) {
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/congrats";
 
+  const routerHistory = useHistory();
+
+  const activatedInfo = JSON.parse(localStorage.getItem("activateInfo"));
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   console.log(userInfo);
+  console.log(activatedInfo);
   const handleSubmit = (e) => {
+    console.log(e);
     e.preventDefault();
-    let code = value
+    let code = opt1 + opt2 + opt3 + opt4 + opt5 + opt6;
     if (!code) {
       alert("Enter A Valid Code from Email");
     } else {
       dispatch(activate(code));
+      // redirect to Login Page
+
+      //
     }
   };
   useEffect(() => {
-    if (userInfo) {
+    if ((activatedInfo.message = "Account activated☑️☑️")) {
       // navigate(redirect);
-      return <Redirect to={redirect} />
+      return routerHistory.push("/congrats");
     }
-  }, [redirect, userInfo]);
+  }, [redirect, activatedInfo]);
 
-  
+  // The event to time goes here:
 
   return (
     <Container>
       <ContainerSub>
-      <Header>VERIFICATION</Header>
-      <TextArea>
-        we have sent a verification code to your email. enter the code you
-        received on your Email. then confirm your email by clicking the link we
-        sent.
-      </TextArea>
-      {userInfo ? (
-        <Counter>Enter Code Sent to<span>+{userInfo.phone}</span></Counter>
-      ) : (
-        <Link to="/signup"></Link>
-      )}
+        <Header>VERIFICATION</Header>
+        <TextArea>
+          we have sent a verification code to your email. enter the code you
+          received on your Email. then confirm your email by clicking the link
+          we sent.
+        </TextArea>
+        {userInfo ? (
+          <Counter>
+            Enter Code Sent to
+            <span style={{ color: "#00AFF0" }}>+{userInfo.phone}</span>
+          </Counter>
+        ) : (
+          <Link to="/signup"></Link>
+        )}
 
-      <Verify>
-        <form onSubmit={handleSubmit} style={{ display: "inline-flex" }}>
-          <VerifyArea>
-            <input
-              name="opt1"
-              type="text"
-              autoComplete="off"
-              className="optInput"
-              value={opt1}
-              onChange={onChangeOpt1}
-              tabIndex="1"
-              maxLength="1"
-              onKeyUp={(e) => inputfocus(e)}
-            />
-          </VerifyArea>
-          <VerifyArea>
-            <input
-              name="opt2"
-              type="text"
-              autoComplete="off"
-              className="optInput"
-              value={opt2}
-              onChange={onChangeOpt2}
-              tabIndex="2"
-              maxLength="1"
-              onKeyUp={(e) => inputfocus(e)}
-            />
-          </VerifyArea>
-          <VerifyArea>
-            <input
-              name="opt3"
-              type="text"
-              autoComplete="off"
-              className="optInput"
-              value={opt3}
-              onChange={onChangeOpt3}
-              tabIndex="3"
-              maxLength="1"
-              onKeyUp={(e) => inputfocus(e)}
-            />
-          </VerifyArea>
-          <VerifyArea>
-            <input
-              name="opt4"
-              type="text"
-              autoComplete="off"
-              className="optInput"
-              value={opt4}
-              onChange={onChangeOpt4}
-              tabIndex="4"
-              maxLength="1"
-              onKeyUp={(e) => inputfocus(e)}
-            />
-          </VerifyArea>
-          <VerifyArea>
-            <input
-              name="opt5"
-              type="text"
-              autoComplete="off"
-              className="optInput"
-              value={opt5}
-              onChange={onChangeOpt5}
-              tabIndex="5"
-              maxLength="1"
-              onKeyUp={(e) => inputfocus(e)}
-            />
-          </VerifyArea>
-          <VerifyArea>
-            <input
-              name="opt6"
-              type="text"
-              autoComplete="off"
-              className="optInput"
-              value={opt6}
-              onChange={onChangeOpt6}
-              tabIndex="6"
-              maxLength="1"
-              onKeyUp={(e) => inputfocus(e)}
-            />
-          </VerifyArea>
-        </form>
-      </Verify>
-      {userInfo ? (
-        <Code>code is valid for{Date.now}</Code>
-      ) : (
-        <Link to="/signup"></Link>
-      )}
+        <Verify>
+          <form style={{ display: "inline-flex" }}>
+            <VerifyArea>
+              <input
+                name="opt1"
+                type="text"
+                autoComplete="off"
+                className="optInput"
+                value={opt1}
+                onChange={onChangeOpt1}
+                tabIndex="1"
+                maxLength="1"
+                onKeyUp={(e) => inputfocus(e)}
+              />
+            </VerifyArea>
+            <VerifyArea>
+              <input
+                name="opt2"
+                type="text"
+                autoComplete="off"
+                className="optInput"
+                value={opt2}
+                onChange={onChangeOpt2}
+                tabIndex="2"
+                maxLength="1"
+                onKeyUp={(e) => inputfocus(e)}
+              />
+            </VerifyArea>
+            <VerifyArea>
+              <input
+                name="opt3"
+                type="text"
+                autoComplete="off"
+                className="optInput"
+                value={opt3}
+                onChange={onChangeOpt3}
+                tabIndex="3"
+                maxLength="1"
+                onKeyUp={(e) => inputfocus(e)}
+              />
+            </VerifyArea>
+            <VerifyArea>
+              <input
+                name="opt4"
+                type="text"
+                autoComplete="off"
+                className="optInput"
+                value={opt4}
+                onChange={onChangeOpt4}
+                tabIndex="4"
+                maxLength="1"
+                onKeyUp={(e) => inputfocus(e)}
+              />
+            </VerifyArea>
+            <VerifyArea>
+              <input
+                name="opt5"
+                type="text"
+                autoComplete="off"
+                className="optInput"
+                value={opt5}
+                onChange={onChangeOpt5}
+                tabIndex="5"
+                maxLength="1"
+                onKeyUp={(e) => inputfocus(e)}
+              />
+            </VerifyArea>
+            <VerifyArea>
+              <input
+                name="opt6"
+                type="text"
+                autoComplete="off"
+                className="optInput"
+                value={opt6}
+                onChange={onChangeOpt6}
+                tabIndex="6"
+                maxLength="1"
+                onKeyUp={(e) => inputfocus(e)}
+              />
+            </VerifyArea>
+          </form>
+        </Verify>
+        {userInfo ? (
+          <Code>code is valid for 15 min</Code>
+        ) : (
+          <Link to="/signup"></Link>
+        )}
 
-      <VerifyButton>
-        <button type="submit" onClick={handleChange}>Verify</button>
-      </VerifyButton>
+        <VerifyButton>
+          <button onClick={(e) => handleSubmit(e)}>Verify</button>
+        </VerifyButton>
 
-      <Registered>
-        <RegisterText style={{ display: "inline-flex" }}>
-          Didnt Receive Your Code?
-          <Link
-            to="/contacts"
-            style={{
-              color: "#00AFF0",
-              textDecoration: "none",
-              fontWeight: "bold",
-              paddingLeft: "5px",
-            }}
-          >
-            Resend Code
-          </Link>
-        </RegisterText>
-      </Registered>
+        <Registered>
+          <RegisterText style={{ display: "inline-flex" }}>
+            Didnt Receive Your Code?
+            <Link
+              to="/contacts"
+              style={{
+                color: "#00AFF0",
+                textDecoration: "none",
+                fontWeight: "bold",
+                paddingLeft: "5px",
+              }}
+            >
+              Resend Code
+            </Link>
+          </RegisterText>
+        </Registered>
       </ContainerSub>
     </Container>
   );

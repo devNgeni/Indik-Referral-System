@@ -69,14 +69,14 @@ export const activate = (code) => async (dispatch) => {
     },
   });
   try {
-    const { data } = await Axios.post(endpoints.activate.url, {
+    const { data } = await Axios.patch(endpoints.activate.url, {
       code,
     });
     dispatch({
       type: USER_ACTIVATE_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    localStorage.setItem("activateInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_ACTIVATE_FAIL,
