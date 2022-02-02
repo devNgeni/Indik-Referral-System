@@ -12,11 +12,12 @@ import {
 } from "./WelcomeElement";
 import circle from "../../images/WelBody/circle.svg";
 import welcomeicon from "../../images/WelBody/welcomeico.svg";
-import { Link, Redirect, NavLink  } from "react-router-dom";
+import { Link, useHistory , NavLink  } from "react-router-dom";
 
 function Welcome() {
+const routerHistory = useHistory();
  const handleOnSubmit = () => {
-    return <Redirect to="/signup"/>
+    return routerHistory.push("/signup")
     };
 
   return (

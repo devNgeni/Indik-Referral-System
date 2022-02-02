@@ -10,6 +10,7 @@ import {
   RegisterText,
   VerifyButton,
   VerifyArea,
+  ContainerSub
 } from "./VerificationElement";
 import { Link, Redirect, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +24,6 @@ function Verification(props) {
   const [opt4, setOpt4] = useState("");
   const [opt5, setOpt5] = useState("");
   const [opt6, setOpt6] = useState("");
-  const disable = useState(true);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -87,7 +87,7 @@ function Verification(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let code = inputfocus.elmnt.form.elements
+    let code = value
     if (!code) {
       alert("Enter A Valid Code from Email");
     } else {
@@ -105,6 +105,7 @@ function Verification(props) {
 
   return (
     <Container>
+      <ContainerSub>
       <Header>VERIFICATION</Header>
       <TextArea>
         we have sent a verification code to your email. enter the code you
@@ -200,13 +201,13 @@ function Verification(props) {
         </form>
       </Verify>
       {userInfo ? (
-        <Code>code is valid for{userInfo.name}</Code>
+        <Code>code is valid for{Date.now}</Code>
       ) : (
         <Link to="/signup"></Link>
       )}
 
       <VerifyButton>
-        <button type="submit">Verify</button>
+        <button type="submit" onClick={handleChange}>Verify</button>
       </VerifyButton>
 
       <Registered>
@@ -225,6 +226,7 @@ function Verification(props) {
           </Link>
         </RegisterText>
       </Registered>
+      </ContainerSub>
     </Container>
   );
 }

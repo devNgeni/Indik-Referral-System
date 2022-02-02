@@ -16,6 +16,7 @@ export const Container = styled.div`
   }
 `;
 export const ContainerSub = styled.div`
+  height: 80vh;
   padding-right: 15px;
   padding-left: 15px;
   box-shadow: 5px 10px 18px #888888;

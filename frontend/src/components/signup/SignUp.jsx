@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, Redirect, useLocation } from "react-router-dom";
+import { Link, useHistory, Redirect, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Register } from "../../actions/userActions";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import { isEmail } from "validator";
 import CheckButton from "react-validation/build/button";
-import LoadingBox from '../loadingBox/LoadingBox';
-import MessageBox from '../messageBox/messageBox';
+import LoadingBox from "../loadingBox/LoadingBox";
+import MessageBox from "../messageBox/messageBox";
 import {
   Container,
   Header,
@@ -99,6 +99,8 @@ const SignUp = (props) => {
   const redirect = redirectInUrl ? redirectInUrl : "/verification";
   const userRegister = useSelector((state) => state.userRegister);
   const { userInfo, loading, error } = userRegister;
+  
+  const routerHistory = useHistory();
 
   const message = useSelector((state) => state.message);
   const dispatch = useDispatch();
@@ -147,9 +149,9 @@ const SignUp = (props) => {
 
   useEffect(() => {
     if (userInfo) {
-      return <Redirect to={redirect} />
+      return routerHistory.push("/verification")
     }
-  }, [props.history, redirect, userInfo]);
+  }, [props.history, routerHistory, userInfo]);
   return (
     <Container className="card card-container">
       <ContainerSub>
@@ -158,8 +160,8 @@ const SignUp = (props) => {
           We will send a text to verify your mobile number and a link to your
           email to verify your account. your email
         </TextArea>
-        {loading && <LoadingBox></LoadingBox>}
-        {error && <MessageBox variant="danger">{error}</MessageBox>}
+        {loading && <LoadingBox style={{color: "red"}}></LoadingBox>}
+        {error && <MessageBox variant="danger" style={{color: "red"}}>{error}</MessageBox>}
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <DangerContainer className={Label}>

@@ -11,6 +11,6 @@ function PrivateRoute({ component: Component, ...restOfProps }) {
                 user && user?.accessToken ? <Component {...props} /> : <Redirect to="/Login" />
             }
         />
-    )    
+    );    
 }
 export default PrivateRoute;

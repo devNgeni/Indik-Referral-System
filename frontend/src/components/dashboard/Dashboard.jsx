@@ -9,12 +9,10 @@ import { makeRequest, endpoints } from '../../api/endpoints';
 import axios from 'axios'
 
 export default function Dashboard() {
-<<<<<<< HEAD
-	
-=======
 
 
-	useEffect(async() => {
+	useEffect(() => {
+		async function fetchData() {
 		try {
 			const tokenUser  =  JSON.parse(localStorage.getItem("userInfo"))
 			console.log(tokenUser.accessToken)
@@ -30,9 +28,9 @@ export default function Dashboard() {
 		} catch (error) {
 			
 		}
+	}
 	}, [])
 
->>>>>>> 5ffd276b73501fcd62a628038b14e6699a44bd33
 	// Sample Data for the table
 	const dataSource = [
 		{ key: '1', username: 'Gourav', connection: 10, profit: 20},

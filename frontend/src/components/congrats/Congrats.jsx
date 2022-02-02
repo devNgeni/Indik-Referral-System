@@ -36,9 +36,7 @@ function Congrats() {
       <CongratsBody>You may now Purchase your License</CongratsBody>
       <CongratsTitle>and make Daily Profit</CongratsTitle>
       <ServiceTwo>
-          <button onClick={handleOnSubmit}>
-            Lets GO
-          </button>
+        <button onClick={handleOnSubmit}>Lets GO</button>
       </ServiceTwo>
     </CongratsContainer>
   );

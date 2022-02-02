@@ -20,7 +20,7 @@ import UserContact from "./pages/Contact";
 import UserDesktop from "./pages/Home";
 import UserDashboard from "./pages/Dashboard";
 import UserTable from "./pages/Table";
-import Friend from "./pages/Friend";
+// import Friend from "./pages/Friend";
 import SideBar from "./pages/SideBar";
 import PopOut from "./pages/PopOut";
 import Policy from "./pages/Policy";
@@ -62,13 +62,11 @@ function App() {
         <Route exact path="/desktop" component={UserDesktop} />
         <PrivateRoute exact path="/dashboard" component={UserDashboard} />
         <PrivateRoute exact path="/table" component={UserTable} />
-        <PrivateRoute exact path="/Friend" component={Friend} />
         <Route exact path="/SideBar" component={SideBar} />
         <Route exact path="/PopOut" component={PopOut} />
         <Route exact path="/terms" component={Policy} />
-        <PrivateRoute exact path="/profileScreen" component={ProfileScreen} />
-
         {/* <Route path="/popup" component={popup} /> */}
+        {/* <PrivateRoute exact path="/Friend" component={Friend} /> */}
       </Switch>
     </BrowserRouter>
   );

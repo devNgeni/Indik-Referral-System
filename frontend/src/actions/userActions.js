@@ -62,11 +62,10 @@ export const Register = (name, email, phone, password, confirmPassword) => async
         });
     }
 };
-export const activate = (email, code) => async (dispatch) => {
+export const activate = (code) => async (dispatch) => {
     dispatch({
         type: USER_ACTIVATE_REQUEST,
         payload: {
-            email,
             code
         }
     });
