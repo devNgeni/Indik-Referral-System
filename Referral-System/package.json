@@ -18,13 +18,8 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-<<<<<<< HEAD
-    "express": "^4.17.2",
-    "express-async-handler": "^1.2.0",
-=======
     "express": "^4.17.1",
     "gn-api-sdk-node": "github:gerencianet/gn-api-sdk-node",
->>>>>>> b3b3b6e51b2780ab39c251fff15ba061200242c4
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "mongo-sanitize": "^1.1.0",
@@ -33,10 +28,7 @@
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
     "password": "^0.1.1",
-<<<<<<< HEAD
-=======
     "qrcode": "^1.5.0",
->>>>>>> b3b3b6e51b2780ab39c251fff15ba061200242c4
     "uuid": "^8.3.2"
   },
   "devDependencies": {
