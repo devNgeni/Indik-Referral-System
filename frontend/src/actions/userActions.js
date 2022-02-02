@@ -72,11 +72,16 @@ export const activate = (code) => async (dispatch) => {
     const { data } = await Axios.post(endpoints.activate.url, {
       code,
     });
-    dispatch({
-      type: USER_ACTIVATE_SUCCESS,
-      payload: data,
-    });
-    localStorage.setItem("userInfo", JSON.stringify(data));
+
+    if (data.success && data.message.situacao !== "ERRO") {
+      dispatch({
+        type: USER_ACTIVATE_SUCCESS,
+        payload: data,
+      });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+    }else  {
+      alert(data.message.descricao);
+    }
   } catch (error) {
     dispatch({
       type: USER_ACTIVATE_FAIL,
