@@ -69,7 +69,7 @@ export const activate = (code) => async (dispatch) => {
     },
   });
   try {
-    const { data } = await Axios.post(endpoints.activate.url, {
+    const { data } = await Axios.patch(endpoints.activate.url, {
       code,
     });
 

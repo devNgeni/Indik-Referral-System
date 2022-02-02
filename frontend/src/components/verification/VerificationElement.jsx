@@ -47,7 +47,6 @@ export const Counter = styled.div`
   text-align-last: center;
   font-size: 1.6rem;
   margin: 2px;
-  color: #00bbff;
 `;
 
 export const Verify = styled.div`
@@ -74,6 +73,7 @@ export const Registered = styled.div`
   padding: 20px;
   text-align-last: center;
   font-size: 1.5em;
+  font-weight: bold;
 `;
 export const RegisterText = styled.div`
   font-family: "Gill Sans", sans-serif;

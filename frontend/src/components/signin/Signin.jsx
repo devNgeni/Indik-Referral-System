@@ -44,98 +44,96 @@ function Signin() {
     dispatch(signin(email, password));
 
     console.log(userSignin);
-    // window.location.reload()
+    window.location.reload();
   };
   useEffect(() => {
     if (userInfo) {
-      return <Redirect to={redirect} />
+      return <Redirect to={redirect} />;
     }
   }, [redirect, userInfo]);
 
   return (
     <Container className="card card-container">
       <ContainerSub>
-      <Header>Sign into Your Account</Header>
-      <Form className={Label} onSubmit={submitHandler}>
-        {loading && <LoadingBox></LoadingBox>}
-        {error && <MessageBox style={{color: "red"}}>{error}</MessageBox>}
-        <Email className={Label}>
-          <NameText>
-            <Input
-              style={{width:"450px"}}
-              autoFocus="autofocus"
-              autoComplete="off"
-              label="email"
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter Email"
-              required
-              className="form-control"
-              onFocus={(e) => {}}
-            />
-          </NameText>
-          <NameText>
-            <Input
-              name="pwd"
-              placeholder="Enter Password"
-              type={isRevealPwd ? "text" : "password"}
-              value={pwd}
-              className="form-control"
-              required
-              onChange={(e) => {
-                setPwd(e.target.value);
-                setPassword(e.target.value);
+        <Header>Sign into Your Account</Header>
+        <Form className={Label} onSubmit={submitHandler}>
+          {loading && <LoadingBox></LoadingBox>}
+          {error && <MessageBox style={{ color: "red" }}>{error}</MessageBox>}
+          <Email className={Label}>
+            <NameText>
+              <Input
+                style={{ width: "450px" }}
+                autoFocus="autofocus"
+                autoComplete="off"
+                label="email"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Email"
+                required
+                className="form-control"
+                onFocus={(e) => {}}
+              />
+            </NameText>
+            <NameText>
+              <Input
+                name="pwd"
+                placeholder="Enter Password"
+                type={isRevealPwd ? "text" : "password"}
+                value={pwd}
+                className="form-control"
+                required
+                onChange={(e) => {
+                  setPwd(e.target.value);
+                  setPassword(e.target.value);
+                }}
+              />
+            </NameText>
+            <TextImage>
+              <img
+                style={{ margin: "10px" }}
+                alt={isRevealPwd ? "Hide password" : "Show password"}
+                src={isRevealPwd ? hidePwdImg : showPwdImg}
+                onClick={() => setIsRevealPwd((prevState) => !prevState)}
+              />
+            </TextImage>
+          </Email>
+          <TextArea>
+            <Link
+              to="/forgot"
+              style={{
+                color: "#00AFF0",
+                textDecoration: "none",
+                fontWeight: "bold",
+                padding: "10px",
+                transition: "all ease-in-out 0.5s",
+                transform: "scale(1.4)",
               }}
-            />
-          </NameText>
-          <TextImage>
-            <img
-              style={{ margin: "10px"}}
-              alt={isRevealPwd ? "Hide password" : "Show password"}
-              src={isRevealPwd ? hidePwdImg : showPwdImg}
-              onClick={() => setIsRevealPwd((prevState) => !prevState)}
-            />
-          </TextImage>
-        </Email>
-        <TextArea>
-        <Link
-          to="/forgot"
-          style={{
-            color: "#00AFF0",
-            textDecoration: "none",
-            fontWeight: "bold",
-            padding: "10px",
-            transition: "all ease-in-out 0.5s",
-            transform: "scale(1.4)",
-          }}>
-          Forgort password
-        </Link>
-      </TextArea>
-      <TextBtn>
-        <button>
-          Sign In
-        </button>
-      </TextBtn>
-      <Registered>
-        <RegisterText>
-          Not Registered?
-        </RegisterText>
-        <RegisterLink>
-          <Link
-            to={`/signup?redirect=${redirect}`}
-            style={{
-              color: "#00AFF0",
-              textDecoration: "none",
-              fontWeight: "bold",
-              paddingLeft: "5px",
-              hover: "transition: all ease-in-out 0.5s  transform: scale(1.2)"
-            }}
-          >
-            Create Account
-          </Link>
-        </RegisterLink>
-      </Registered>
-       </Form>
+            >
+              Forgort password
+            </Link>
+          </TextArea>
+          <TextBtn>
+            <button>Sign In</button>
+          </TextBtn>
+          <Registered>
+            <RegisterText>Not Registered?</RegisterText>
+            <RegisterLink>
+              <Link
+                to={`/signup?redirect=${redirect}`}
+                style={{
+                  color: "#00AFF0",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                  paddingLeft: "5px",
+                  hover:
+                    "transition: all ease-in-out 0.5s  transform: scale(1.2)",
+                }}
+              >
+                Create Account
+              </Link>
+            </RegisterLink>
+          </Registered>
+        </Form>
       </ContainerSub>
     </Container>
   );
